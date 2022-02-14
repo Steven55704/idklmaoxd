@@ -1,6 +1,6 @@
 -- script execute checks
 repeat task.wait() until game.IsLoaded
-local NotifyLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/AlexR32/Roblox/main/TypeWriter.lua"))()
+local NotifyLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Steven55704/idklmaoxd/main/BRM5/typewriter.lua"))()
 if getgenv().MultihackExecuted then NotifyLib.TypeWrite("<font size=\"30\"><font color=\"rgb(63,126,252)\"><b>ⓘ</b></font></font> script already executed",15,0) return end
 getgenv().MultihackExecuted = true
 
@@ -37,7 +37,7 @@ LocalPlayer.OnTeleport:Connect(function(State)
         --NotifyLib.TypeWrite("<font size=\"30\"><font color=\"rgb(252,126,63)\"><b>⚠</b></font></font> queue on teleport started",15,0)
         getgenv().MultihackExecuted = false
         local QueueOnTeleport = (syn and syn.queue_on_teleport) or queue_on_teleport
-        QueueOnTeleport(game:HttpGet("https://raw.githubusercontent.com/AlexR32/Roblox/main/BRM5/SilentAim.lua"))
+        QueueOnTeleport(game:HttpGet("https://raw.githubusercontent.com/Steven55704/idklmaoxd/main/BRM5/brm5.lua"))
     end
 end)
 local NPCFolder = Workspace:FindFirstChild("Enemies")
@@ -53,24 +53,24 @@ if not NPCFolder then
 end
 
 -- helpful modules
-local ESPLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/AlexR32/Roblox/main/ESPLibrary.lua"))()
-local ConfigSystem = loadstring(game:HttpGet("https://raw.githubusercontent.com/AlexR32/Roblox/main/ConfigSystem.lua"))()
+local ESPLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/Steven55704/idklmaoxd/main/BRM5/esplibrary.lua"))()
+local ConfigSystem = loadstring(game:HttpGet("https://raw.githubusercontent.com/Steven55704/idklmaoxd/main/BRM5/configsystem.lua"))()
 
 -- config system
 local function SaveConfig()
-    if isfile("Alex's Scripts/BRM5_SilentAim.json") then
-        ConfigSystem.WriteJSON(Config,"Alex's Scripts/BRM5_SilentAim.json")
+    if isfile("Stevens's Scripts/BRM5_SilentAim.json") then
+        ConfigSystem.WriteJSON(Config,"Steven's Scripts/BRM5.json")
     else
-        makefolder("Alex's Scripts")
-        ConfigSystem.WriteJSON(Config,"Alex's Scripts/BRM5_SilentAim.json")
+        makefolder("Stevens's Scripts")
+        ConfigSystem.WriteJSON(Config,"Steven's Scripts/BRM5.json")
     end
 end
 local function LoadConfig()
-    if isfile("Alex's Scripts/BRM5_SilentAim.json") then
-        getgenv().Config = ConfigSystem.ReadJSON("Alex's Scripts/BRM5_SilentAim.json",Config)
+    if isfile("Steven's Scripts/BRM5.json") then
+        getgenv().Config = ConfigSystem.ReadJSON("Steven's Scripts/BRM5.json",Config)
     else
-        makefolder("Alex's Scripts")
-        ConfigSystem.WriteJSON(Config,"Alex's Scripts/BRM5_SilentAim.json")
+        makefolder("Steven's Scripts")
+        ConfigSystem.WriteJSON(Config,"Steven's Scripts/BRM5.json")
     end
 end
 getgenv().Config = {
@@ -388,7 +388,7 @@ local Window = Library({Name = "Blackhawk Rescue Mission 5 Multihack",Enabled = 
                     ["cmd"] = "INVITE_BROWSER",
                     ["nonce"] = string.lower(HttpService:GenerateGUID(false)),
                     ["args"] = {
-                        ["code"] = "JKywVqjV6m"
+                        ["code"] = "Poki"
                     }
                 })
             })
@@ -449,7 +449,7 @@ local Window = Library({Name = "Blackhawk Rescue Mission 5 Multihack",Enabled = 
             CreditsSection:AddLabel({Text = "Thanks to Infinite Yield Team For Server Hop"})
             CreditsSection:AddLabel({Text = "Thanks to coasts For His Univeral ESP/Visuals (Forked and remade to module)"})
             CreditsSection:AddLabel({Text = "Thanks to el3tric for Bracket V2 (Remade to Bracket V3.1)"})
-            CreditsSection:AddLabel({Text = "And AlexR32#0157 (Me) For Making This Awesome Script!"})
+            CreditsSection:AddLabel({Text = "And Steven (Me) For Making This Awesome Script!"})
             CreditsSection:AddLabel({Text = "❤️ ❤️ ❤️ ❤️"})
         end
     end
