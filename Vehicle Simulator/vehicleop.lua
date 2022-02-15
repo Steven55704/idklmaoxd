@@ -79,7 +79,7 @@ Name.BorderSizePixel = 0
 Name.Position = UDim2.new(0.316628695, 0, 0, 0)
 Name.Size = UDim2.new(0, 154, 0, 25)
 Name.Font = Enum.Font.Cartoon
-Name.Text = "Vehicle Simulator Succ "
+Name.Text = "Vehicle Simulator OP GUI"
 Name.TextColor3 = Color3.new(1, 1, 1)
 Name.TextSize = 20
 
@@ -98,7 +98,7 @@ Credit.BackgroundTransparency = 1
 Credit.BorderSizePixel = 0
 Credit.Size = UDim2.new(0, 439, 0, 24)
 Credit.Font = Enum.Font.Cartoon
-Credit.Text = "Gui Made By Duky #4715 , Scripts Made By someone"
+Credit.Text = "Scripts Made By Steven55704"
 Credit.TextColor3 = Color3.new(1, 1, 1)
 Credit.TextSize = 16
 
