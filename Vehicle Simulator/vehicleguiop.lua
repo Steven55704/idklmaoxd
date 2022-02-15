@@ -1,5 +1,3 @@
--- Made by AndreKing2017
--- Roblox Username AndreKing2019
 -- Farewell Infortality.
 -- Version: 2.82
 -- Instances:
