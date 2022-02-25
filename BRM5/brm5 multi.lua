@@ -450,7 +450,7 @@ local Window = Library({Name = "Blackhawk Rescue Mission 5 Multihack",Enabled = 
             CreditsSection:AddLabel({Text = "Thanks to coasts For His Univeral ESP/Visuals (Forked and remade to module)"})
             CreditsSection:AddLabel({Text = "Thanks to el3tric for Bracket V2 (Remade to Bracket V3.1)"})
             CreditsSection:AddLabel({Text = "And Steven (Me) For Making This Awesome Script!"})
-            CreditsSection:AddLabel({Text = "❤️ ❤️ ❤️ ❤️"})
+            CreditsSection:AddLabel({Text = "This Script also has anti-ban"})
         end
     end
 end
