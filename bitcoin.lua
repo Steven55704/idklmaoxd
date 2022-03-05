@@ -52,7 +52,7 @@ while true do
 		if snow then
 			wait()
 			
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Teleports["a4-SolarisShop"].CFrame
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Teleports[""].CFrame
 			wait(0.5)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").SnowFlakes.SnowFlake.Part.CFrame
 			wait(0.2)
