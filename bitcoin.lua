@@ -68,26 +68,26 @@ while true do
 			local bloxchain = string.match(game:GetService("Players").LocalPlayer.PlayerGui.Phone.Frame.MiningAlgorithms.xs.Rate.Text, '%d%p%d+')
 						
 			if dagger > scrypt and dagger > sha and dagger > bloxchain then
-				wait(0.8)
+				wait(0.5)
 				local args = {[1] = 2}
 				game:GetService("ReplicatedStorage").Events.AlgoChang:FireServer(unpack(args))
 
 			end
 			
 			if scrypt > dagger and scrypt > sha and scrypt > bloxchain then
-				wait(0.8)
+				wait(0.5)
 			local args = {[1] = 3}
 			game:GetService("ReplicatedStorage").Events.AlgoChang:FireServer(unpack(args))
 			end
 			
 			if sha > dagger and sha > scrypt and sha > bloxchain then
-				wait(0.8)
+				wait(0.5)
 				local args = {[1] = 1}
 				game:GetService("ReplicatedStorage").Events.AlgoChang:FireServer(unpack(args))
 			end
 			
 			if bloxchain > dagger and bloxchain > scrypt and bloxchain > sha then
-				wait(0.8)
+				wait(0.5)
 				local args = {[1] = 4}
 				game:GetService("ReplicatedStorage").Events.AlgoChang:FireServer(unpack(args))
 			end
