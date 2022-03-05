@@ -81,13 +81,13 @@ while true do
 			end
 			
 			if sha > dagger and sha > scrypt and sha > bloxchain then
-				wait(0.8
+				wait(0.8)
 				local args = {[1] = 1}
 				game:GetService("ReplicatedStorage").Events.AlgoChang:FireServer(unpack(args))
 			end
 			
 			if bloxchain > dagger and bloxchain > scrypt and bloxchain > sha then
-				wait(0.8
+				wait(0.8)
 				local args = {[1] = 4}
 				game:GetService("ReplicatedStorage").Events.AlgoChang:FireServer(unpack(args))
 			end
