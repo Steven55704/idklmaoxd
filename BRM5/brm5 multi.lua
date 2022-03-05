@@ -37,7 +37,7 @@ LocalPlayer.OnTeleport:Connect(function(State)
         --NotifyLib.TypeWrite("<font size=\"30\"><font color=\"rgb(252,126,63)\"><b>⚠</b></font></font> queue on teleport started",15,0)
         getgenv().MultihackExecuted = false
         local QueueOnTeleport = (syn and syn.queue_on_teleport) or queue_on_teleport
-        QueueOnTeleport(game:HttpGet("https://raw.githubusercontent.com/Steven55704/idklmaoxd/main/BRM5/brm5.lua"))
+        QueueOnTeleport(game:HttpGet("https://raw.githubusercontent.com/Steven55704/idklmaoxd/main/BRM5/brm5%20multi.lua"))
     end
 end)
 local NPCFolder = Workspace:FindFirstChild("Enemies")
@@ -58,10 +58,10 @@ local ConfigSystem = loadstring(game:HttpGet("https://raw.githubusercontent.com/
 
 -- config system
 local function SaveConfig()
-    if isfile("Stevens's Scripts/BRM5_SilentAim.json") then
+    if isfile("Steven's Scripts/BRM5_SilentAim.json") then
         ConfigSystem.WriteJSON(Config,"Steven's Scripts/BRM5.json")
     else
-        makefolder("Stevens's Scripts")
+        makefolder("Steven's Scripts")
         ConfigSystem.WriteJSON(Config,"Steven's Scripts/BRM5.json")
     end
 end
