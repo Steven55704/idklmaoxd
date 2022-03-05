@@ -53,7 +53,7 @@ while true do
 			wait()
 			
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Teleports["a4-SolarisShop"].CFrame
-			wait(0.1)
+			wait(0.5)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").SnowFlakes.SnowFlake.Part.CFrame
 			wait(0.2)
 			fireproximityprompt(game:GetService("Workspace").SnowFlakes.SnowFlake.Part.ProximityPrompt)
