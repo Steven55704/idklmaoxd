@@ -53,7 +53,7 @@ while true do
 			wait()
 			
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Teleports["a4-SolarisShop"].CFrame
-			wait(1)
+			wait(0.1)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").SnowFlakes.SnowFlake.Part.CFrame
 			wait(0.2)
 			fireproximityprompt(game:GetService("Workspace").SnowFlakes.SnowFlake.Part.ProximityPrompt)
@@ -68,26 +68,26 @@ while true do
 			local bloxchain = string.match(game:GetService("Players").LocalPlayer.PlayerGui.Phone.Frame.MiningAlgorithms.xs.Rate.Text, '%d%p%d+')
 						
 			if dagger > scrypt and dagger > sha and dagger > bloxchain then
-				wait(1)
+				wait(0.1)
 				local args = {[1] = 2}
 				game:GetService("ReplicatedStorage").Events.AlgoChang:FireServer(unpack(args))
 
 			end
 			
 			if scrypt > dagger and scrypt > sha and scrypt > bloxchain then
-				wait(1)
+				wait(0.1)
 			local args = {[1] = 3}
 			game:GetService("ReplicatedStorage").Events.AlgoChang:FireServer(unpack(args))
 			end
 			
 			if sha > dagger and sha > scrypt and sha > bloxchain then
-				wait(1)
+				wait(0.1)
 				local args = {[1] = 1}
 				game:GetService("ReplicatedStorage").Events.AlgoChang:FireServer(unpack(args))
 			end
 			
 			if bloxchain > dagger and bloxchain > scrypt and bloxchain > sha then
-				wait(1)
+				wait(0.1)
 				local args = {[1] = 4}
 				game:GetService("ReplicatedStorage").Events.AlgoChang:FireServer(unpack(args))
 			end
