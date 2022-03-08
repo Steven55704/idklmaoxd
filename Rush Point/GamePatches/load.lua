@@ -13,7 +13,7 @@ return function(Type, PatchName)
     end
 
     -- // Vars
-    local PatchFormat = "https://github.com/Steven55704/idklmaoxd/tree/main/Rush%20Point/GamePatches/Module/%s/%s.lua"
+    local PatchFormat = "https://raw.githubusercontent.com/Steven55704/idklmaoxd/main/Rush%20Point/GamePatches/Module/%s/%s.lua"
 
     -- // Attempt to load a patch for the game
     local Success, _ = pcall(function()
@@ -23,7 +23,7 @@ return function(Type, PatchName)
 
     -- // Load default otherwise
     if (not Success) then
-        local ModuleFormat = "https://github.com/Steven55704/idklmaoxd/tree/main/Rush%20Point/GamePatches/%s.lua"
+        local ModuleFormat = "https://raw.githubusercontent.com/Steven55704/idklmaoxd/main/Rush%20Point/GamePatches/%s.lua"
         loadstring(game:HttpGet(ModuleFormat:format(Type)))()
     end
 
