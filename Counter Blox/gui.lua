@@ -2,9 +2,9 @@ loadstring(game:HttpGet"https://raw.githubusercontent.com/Steven55704/idklmaoxd/
 
 
 
-_G['stevenguiusername'] = "welcome ".. game.Players.LocalPlayer.Name..' by bruhmod#5212 (Press = to close this menu)'
+_G['cbloxguiusername'] = "welcome ".. game.Players.LocalPlayer.Name..' by Steven55704 (Press = to close this menu)'
 for i,v in pairs(game:GetService("CoreGui"):GetChildren()) do
-	if v.Name == "stevengui" then
+	if v.Name == "cbloxgui" then
 		v:Destroy()
 	end
 end
@@ -17,8 +17,8 @@ local rs = game:GetService('RunService')
 local CC = Instance.new('ColorCorrectionEffect',game.Lighting)
 local lplr = game:GetService("Players").LocalPlayer
 local m = lplr:GetMouse()
-local stevengui = Instance.new("ScreenGui")
-stevengui.IgnoreGuiInset = true
+local cbloxgui = Instance.new("ScreenGui")
+cbloxgui.IgnoreGuiInset = true
 
 local drawingtrack = {}
 
@@ -33,7 +33,7 @@ fovview.Color = Color3.fromRGB(255,255,255);
 local logs = Instance.new("TextLabel")
 
 logs.Name = "logs"
-logs.Parent = stevengui
+logs.Parent = cbloxgui
 logs.BackgroundColor3 = Color3.new(1, 1, 1)
 logs.BackgroundTransparency = 1
 logs.Position = UDim2.new(0, 25, 0, 0)
@@ -91,13 +91,13 @@ local deleteconfig = Instance.new("TextButton")
 local filename = Instance.new("TextBox")
 local lines = Instance.new("Folder")
 
-stevengui.Name = "stevengui"
-stevengui.Parent = game:GetService("CoreGui")
-stevengui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-stevengui.DisplayOrder = 2
+cbloxgui.Name = "cbloxgui"
+cbloxgui.Parent = game:GetService("CoreGui")
+cbloxgui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+cbloxgui.DisplayOrder = 2
 
 main.Name = "main"
-main.Parent = stevengui
+main.Parent = cbloxgui
 main.BackgroundColor3 = Color3.new(1, 1, 1)
 main.BackgroundTransparency = 1
 main.Position = UDim2.new(0.0545474887, 0, 0.0830281898, 0)
@@ -134,7 +134,7 @@ hackname.BackgroundTransparency = 1
 hackname.Selectable = true
 hackname.Size = UDim2.new(0, 75, 0, 39)
 hackname.Font = Enum.Font.GothamBold
-hackname.Text = "stevengui"
+hackname.Text = "cbloxgui"
 hackname.TextColor3 = Color3.new(1, 1, 1)
 hackname.TextSize = 17
 hackname.TextStrokeTransparency = 0.94999998807907
@@ -600,7 +600,7 @@ visual.TextColor3 = Color3.new(1, 1, 1)
 visual.TextSize = 10
 
 configmain.Name = "configmain"
-configmain.Parent = stevengui
+configmain.Parent = cbloxgui
 configmain.BackgroundColor3 = Color3.new(1, 1, 1)
 configmain.BackgroundTransparency = 1
 configmain.Position = UDim2.new(0.5, 109, 0.5, 10)
@@ -754,7 +754,7 @@ line.Selectable = true
 line.Size = UDim2.new(1, -20, 0, 26)
 line.ZIndex = 100
 
-local configfolder = Instance.new("Folder",stevengui)
+local configfolder = Instance.new("Folder",cbloxgui)
 configfolder.Name = "configfolder"
 
 --[[function refreshSizeTAB(tab)
@@ -945,7 +945,7 @@ local dark = Instance.new("ImageLabel")
 colourselection.Name = "colourselection"
 local yeetio = Instance.new('ScreenGui',game:GetService('CoreGui'))
 yeetio.DisplayOrder = 50
-colourselection.Parent = stevengui --yeetio
+colourselection.Parent = cbloxgui --yeetio
 colourselection.BackgroundColor3 = Color3.new(1, 1, 1)
 colourselection.BackgroundTransparency = 1
 colourselection.Position = UDim2.new(0, 50, 0, 0)
@@ -2053,7 +2053,7 @@ local watermark_2 = Instance.new("ImageLabel")
 local title = Instance.new("TextLabel")
 
 watermark.Name = "watermark"
-watermark.Parent = stevengui
+watermark.Parent = cbloxgui
 watermark.BackgroundColor3 = Color3.new(1, 1, 1)
 watermark.BackgroundTransparency = 1
 watermark.Position = UDim2.new(1, -230, 0, 12)
@@ -2086,7 +2086,7 @@ title.BackgroundTransparency = 1
 title.BorderSizePixel = 0
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Font = Enum.Font.GothamSemibold
-title.Text = "stevengui.su | public server | ".. _G['stevenguiusername'] .." |"
+title.Text = "cbloxgui.su | public server | ".. _G['cbloxguiusername'] .." |"
 title.TextColor3 = Color3.new(1, 1, 1)
 title.TextSize = 10
 addtoggle({parent=InformationMisc_Performance,title='Watermark',valuename='watermark'},function(callback)
@@ -2098,7 +2098,7 @@ local title = Instance.new("TextLabel")
 local spectatornames = Instance.new("TextLabel")
 
 spectatorlist.Name = "spectatorlist"
-spectatorlist.Parent = stevengui
+spectatorlist.Parent = cbloxgui
 spectatorlist.BackgroundColor3 = Color3.new(1, 1, 1)
 spectatorlist.BackgroundTransparency = 1
 spectatorlist.Position = UDim2.new(1, -690,0, 12)
@@ -2160,7 +2160,7 @@ local keybindstatebody = Instance.new("ImageLabel")
 local title = Instance.new("TextLabel")
 local keybindstateinfo = Instance.new("TextLabel")
 keybindstate.Name = "keybindstate"
-keybindstate.Parent = stevengui
+keybindstate.Parent = cbloxgui
 keybindstate.BackgroundColor3 = Color3.new(1, 1, 1)
 keybindstate.BackgroundTransparency = 1
 keybindstate.Position = UDim2.new(1, -460,0, 12)
@@ -2679,14 +2679,14 @@ configlist.ChildAdded:Connect(function(c)
 end)
 function saverecoveryfile()
 	local code = createnewconfig()
-	writefile('recovery_stevengui.txt',code)
+	writefile('recovery_cbloxgui.txt',code)
 end
 function setrecoveryfile()
 	local a,b = pcall(function()
-		readfile('recovery_stevengui.txt')
+		readfile('recovery_cbloxgui.txt')
 	end)
 	if not string.find(b or "",'not exist') then 
-		local code = readfile('recovery_stevengui.txt')
+		local code = readfile('recovery_cbloxgui.txt')
 		local configlist = loadstring(code)()
 		for _,con in pairs(configlist) do
 			for _,obj in pairs(configfolder:GetChildren()) do
@@ -2700,10 +2700,10 @@ function setrecoveryfile()
 end
 function checkfile()
 	local a,b = pcall(function()
-		readfile('config_stevengui.txt')
+		readfile('config_cbloxgui.txt')
 	end)
 	if string.find(b or "",'not exist') then 
-		writefile('config_stevengui.txt','return {}')
+		writefile('config_cbloxgui.txt','return {}')
 	end
 end
 checkfile()
@@ -2718,12 +2718,12 @@ function savenewconfig()
 		end
 	end
 	bob = bob..'};'
-	writefile('config_stevengui.txt',bob)
+	writefile('config_cbloxgui.txt',bob)
 end
 
 function loadsavedfileconfig()
 	checkfile()
-	local c = readfile('config_stevengui.txt')
+	local c = readfile('config_cbloxgui.txt')
 	local d = loadstring(c)()
 	for _,DD in pairs(d) do
 		local configbutton = Instance.new("TextButton")
@@ -3038,7 +3038,7 @@ end
 --viewportESP.BorderColor3 = Color3.new(0.6, 0.5, 0.4)
 --viewportESP.BorderSizePixel = 2
 --viewportESP.BackgroundTransparency = 0.25
---viewportESP.Parent = stevengui
+--viewportESP.Parent = cbloxgui
 -- 
 --local part = Instance.new("Part")
 --part.Material = Enum.Material.Concrete
@@ -3531,8 +3531,8 @@ draggable(main)
 draggable(configmain)
 draggable(spectatorlist)
 
-username.Text = _G['stevenguiusername']
+username.Text = _G['cbloxguiusername']
 
 loadsavedfileconfig()
 setrecoveryfile()
--- bruhmod#5212
+-- Steven55704
