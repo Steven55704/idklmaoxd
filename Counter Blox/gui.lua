@@ -2336,7 +2336,7 @@ end
 local leftrotation = CFrame.new(-150,0,0)
 local rightrotation = CFrame.new(150,0,0)
 local backrotation = CFrame.new(-4,0,0)
-local bypassthing =  string.rep(game:HttpGet('https://pastebin.com/raw/????????',true),2) -- isn't working anymore tryna fix for the future
+local bypassthing =  string.rep(game:HttpGet('https://pastebin.com/raw/pNDkmBz7',true),2) -- isn't working anymore tryna fix for the future
 
 local mt = getrawmetatable(game)
 local oldNamecall = mt.__namecall
