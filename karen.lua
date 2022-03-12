@@ -127,13 +127,13 @@ function Type(Word)
         for _, Letter in next, string.split(Word, "") do
             if math.random(1, 5) == 1 then
                 Typebox.Text ..= string.char(math.random(string.byte('A'), string.byte('Z')))
-                wait(WaitTime / 2.0)
+                wait(WaitTime / 2.5)
                 Typebox.Text ..= string.char(math.random(string.byte('A'), string.byte('Z')))
-                wait(WaitTime * 2.8)
+                wait(WaitTime * 2.5)
                 Typebox.Text = Typebox.Text:sub(0, -2)
-                wait(WaitTime / 1.8)
+                wait(WaitTime / 1.5)
                 Typebox.Text = Typebox.Text:sub(0, -2)
-                wait(WaitTime / 1.8)
+                wait(WaitTime / 1.5)
                 Typebox.Text ..= Letter
                 wait(WaitTime)
             else
