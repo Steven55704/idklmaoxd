@@ -131,9 +131,9 @@ function Type(Word)
                 Typebox.Text ..= string.char(math.random(string.byte('A'), string.byte('Z')))
                 wait(WaitTime * 2.8)
                 Typebox.Text = Typebox.Text:sub(0, -2)
-                wait(WaitTime / 1.2)
+                wait(WaitTime / 1.3)
                 Typebox.Text = Typebox.Text:sub(0, -2)
-                wait(WaitTime / 1.2)
+                wait(WaitTime / 1.3)
                 Typebox.Text ..= Letter
                 wait(WaitTime)
             else
