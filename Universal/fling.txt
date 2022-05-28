@@ -1,0 +1,4 @@
+Target = "name" -- target name, can be shortened
+flinghh = 1000 -- what to set your hipheight to while flinging
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Steven55704/idklmaoxd/main/Universal/fling.lua"))()
