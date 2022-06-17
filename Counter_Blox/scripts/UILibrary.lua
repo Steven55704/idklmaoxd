@@ -1,4 +1,4 @@
--- Hexagon UI Library
+-- Chrome UI Library
 local TweenService, RunService, UserInputService,gui,dragging,dragInput,dragStart,startPos,cpt,cpf,cppicking,cppickingVal,cppickingAlpha,cphue,cpsat,cpval,focused,highest,focusedBox = game:GetService("TweenService"),game:GetService("RunService"), game:GetService("UserInputService")
 local cpalpha = 0
 
@@ -155,10 +155,10 @@ local library = {
 	windows = {},
     pointers = {},
     settings = {
-        guiname = "Hexagon",
-		title = "Hexagon [Exodus Edition]",
+        guiname = "Chrome",
+		title = "Chrome [Updated]",
 		logo = "rbxassetid://4350178803", -- "http://www.roblox.com/asset/?id=6597976562",
-        footer = " Exodus Winning $$$",
+        footer = " Chrome Winning $$$",
         modal = true,
         font = Enum.Font.SourceSans,
         textsize = 16,
