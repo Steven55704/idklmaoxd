@@ -17,12 +17,12 @@ local Mouse = LocalPlayer:GetMouse()
 local CurrentCamera = workspace.CurrentCamera
 
 local Hint = Instance.new("Hint", CoreGui)
-Hint.Text = "Chrome | Waiting for the game to load..."
+Hint.Text = "Chrome | Waiting for the game to load"
 
 repeat wait() until game:IsLoaded()
 repeat wait() until LocalPlayer.PlayerGui:FindFirstChild("GUI")
 
-Hint.Text = "Chrome | Setting up environment..."
+Hint.Text = "Chrome | Setting up environment"
 
 -- Environment 
 local getrawmetatable = getrawmetatable or false
@@ -39,7 +39,7 @@ if (listfiles == false) then return LocalPlayer:Kick("Exploit not supported! Mis
 if (isfolder == false) then return LocalPlayer:Kick("Exploit not supported! Missing: isfolder.") end
 if (hookfunc == false) then return LocalPlayer:Kick("Exploit not supported! Missing: hookfunc.") end
 
-Hint.Text = "Chrome | Setting up configuration settings..."
+Hint.Text = "Chrome | Setting up configuration settings"
 
 if not isfolder("chrome") then
 	print("creating chrome folder")
@@ -58,12 +58,12 @@ end
 
 if not isfile("chrome/custom_skins.txt") then
 	print("downloading chrome custom skins file")
-	writefile("chrome/custom_skins.txt", game:HttpGet("https://raw.githubusercontent.com/Steven55704/idklmaoxd/main/Counter_Blox/default_data/custom_skins.txt"))
+	writefile("chrome/custom_skins.txt", game:HttpGet("https://raw.githubusercontent.com/Steven55704/Roblox/main/Counter_Blox/default_data/custom_skins.txt"))
 end
 
 if not isfile("chrome/custom_models.txt") then
 	print("downloading chrome custom models file")
-	writefile("chrome/custom_models.txt", game:HttpGet("https://raw.githubusercontent.com/Steven55704/idklmaoxd/main/Counter_Blox/default_data/custom_models.txt"))
+	writefile("chrome/custom_models.txt", game:HttpGet("https://raw.githubusercontent.com/Steven55704/Roblox/main/Counter_Blox/default_data/custom_models.txt"))
 elseif readfile("chrome/custom_models.txt"):find("Clone") then
 	local str = readfile("chrome/custom_models.txt")
 	writefile("chrome/custom_models.txt", str)
@@ -72,15 +72,15 @@ end
 
 if not isfile("chrome/inventories.txt") then
 	print("downloading chrome inventories file")
-	writefile("chrome/inventories.txt", game:HttpGet("https://raw.githubusercontent.com/Steven55704/idklmaoxd/main/Counter_Blox/default_data/inventories.txt"))
+	writefile("chrome/inventories.txt", game:HttpGet("https://raw.githubusercontent.com/Steven55704/Roblox/main/Counter_Blox/default_data/inventories.txt"))
 end
 
 if not isfile("chrome/skyboxes.txt") then
 	print("downloading chrome skyboxes file")
-	writefile("chrome/skyboxes.txt", game:HttpGet("https://raw.githubusercontent.com/Steven55704/idklmaoxd/main/Counter_Blox/default_data/skyboxes.txt"))
+	writefile("chrome/skyboxes.txt", game:HttpGet("https://raw.githubusercontent.com/Steven55704/Roblox/main/Counter_Blox/default_data/skyboxes.txt"))
 end
 
-Hint.Text = "Chrome | Loading..."
+Hint.Text = "Chrome | Loading"
 
 -- Main
 local WeaponsData = ReplicatedStorage.Weapons
@@ -94,7 +94,7 @@ local ThrowGrenade = Events.ThrowGrenade
 local PlantC4 = Events.PlantC4
 
 -- Dynamic
-local SilentLegitbot = {target = nil}
+local SilentAimSetting = {target = nil}
 local SilentRagebot = {target = nil, cooldown = false}
 local oldInventory = cbClient.CurrentInventory
 local nocw_s = {}
@@ -153,8 +153,8 @@ local Configs = {}
 local Inventories = loadstring("return "..readfile("chrome/inventories.txt"))()
 local Skyboxes = loadstring("return "..readfile("chrome/skyboxes.txt"))()
 
-local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Steven55704/idklmaoxd/main/Counter_Blox/scripts/Esp.lua"))()
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Steven55704/idklmaoxd/main/Counter_Blox/scripts/UILibrary.lua"))()
+local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Steven55704/Roblox/main/Counter_Blox/scripts/Esp.lua"))()
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Steven55704/Roblox/main/Counter_Blox/scripts/UILibrary.lua"))()
 
 local Window = library:CreateWindow(Vector2.new(500, 500), Vector2.new((CurrentCamera.ViewportSize.X/2) - 250, (CurrentCamera.ViewportSize.Y/2) - 250))
 
@@ -285,14 +285,14 @@ local function GetLegitbotTarget()
 	
 	for i,v in pairs(Players:GetPlayers()) do
 		if IsAlive(v) and v ~= LocalPlayer and not v.Character:FindFirstChild("ForceField") then
-			if library.pointers.AimbotTabCategoryLegitbotTeamCheck.value == false or GetTeam(v) ~= GetTeam(LocalPlayer) then
-				if library.pointers.AimbotTabCategoryLegitbotVisibilityCheck.value == false or IsVisible(v.Character.Head.Position, {v.Character, LocalPlayer.Character, ChromeFolder, CurrentCamera}) == true then
+			if library.pointers.MainTabCategoryLegitbotTeamCheck.value == false or GetTeam(v) ~= GetTeam(LocalPlayer) then
+				if library.pointers.MainTabCategoryLegitbotVisibilityCheck.value == false or IsVisible(v.Character.Head.Position, {v.Character, LocalPlayer.Character, ChromeFolder, CurrentCamera}) == true then
 					local Vector, onScreen = CurrentCamera:WorldToScreenPoint(v.Character.HumanoidRootPart.Position)
 					local FOV = (Vector2.new(Mouse.X, Mouse.Y) - Vector2.new(Vector.X, Vector.Y)).magnitude
 					
-					if FOV < library.pointers.AimbotTabCategoryLegitbotFOV.value or library.pointers.AimbotTabCategoryLegitbotFOV.value == 0 then
-						if math.floor((LocalPlayer.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).magnitude) < library.pointers.AimbotTabCategoryLegitbotDistance.value or library.pointers.AimbotTabCategoryLegitbotDistance.value == 0 then
-							if library.pointers.AimbotTabCategoryLegitbotTargetPriority.value == "FOV" then
+					if FOV < library.pointers.MainTabCategoryLegitbotFOV.value or library.pointers.MainTabCategoryLegitbotFOV.value == 0 then
+						if math.floor((LocalPlayer.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).magnitude) < library.pointers.MainTabCategoryLegitbotDistance.value or library.pointers.MainTabCategoryLegitbotDistance.value == 0 then
+							if library.pointers.MainTabCategoryLegitbotTargetPriority.value == "FOV" then
 								local Vector, onScreen = CurrentCamera:WorldToScreenPoint(v.Character.HumanoidRootPart.Position)
 								local FOV = (Vector2.new(Mouse.X, Mouse.Y) - Vector2.new(Vector.X, Vector.Y)).magnitude
 									
@@ -300,7 +300,7 @@ local function GetLegitbotTarget()
 									target = v
 									oldval = FOV
 								end
-							elseif library.pointers.AimbotTabCategoryLegitbotTargetPriority.value == "Distance" then
+							elseif library.pointers.MainTabCategoryLegitbotTargetPriority.value == "Distance" then
 								local Distance = math.floor((v.Character.HumanoidRootPart.Position - LocalPlayer.Character.HumanoidRootPart.Position).magnitude)
 								
 								if Distance < oldval then
@@ -325,12 +325,12 @@ end
 local function GetLegitbotHitbox(plr)
 	local target,oldval = nil,math.huge
 	
-	for i,v in pairs(library.pointers.AimbotTabCategoryLegitbotHitbox.value) do
+	for i,v in pairs(library.pointers.MainTabCategoryLegitbotHitbox.value) do
 		for i2,v2 in pairs(Hitboxes[v]) do
 			targetpart = plr.Character:FindFirstChild(v2)
 			
 			if targetpart ~= nil then
-				if library.pointers.AimbotTabCategoryLegitbotHitboxPriority.value == "FOV" then
+				if library.pointers.MainTabCategoryLegitbotHitboxPriority.value == "FOV" then
 					local Vector, onScreen = CurrentCamera:WorldToScreenPoint(targetpart.Position)
 					local FOV = (Vector2.new(Mouse.X, Mouse.Y) - Vector2.new(Vector.X, Vector.Y)).magnitude
 					
@@ -338,7 +338,7 @@ local function GetLegitbotHitbox(plr)
 						target = targetpart
 						oldval = FOV
 					end
-				elseif library.pointers.AimbotTabCategoryLegitbotHitboxPriority.value == "Distance" then
+				elseif library.pointers.MainTabCategoryLegitbotHitboxPriority.value == "Distance" then
 					local Distance = math.floor((targetpart.Position - LocalPlayer.Character.HumanoidRootPart.Position).magnitude)
 					
 					if Distance < oldval then
@@ -456,93 +456,93 @@ local function AddCustomModel(tbl)
 end
 
 -- GUI
-local AimbotTab = Window:CreateTab("Aimbot")
+local MainTab = Window:CreateTab("Main")
 
-local AimbotTabCategoryLegitbot = AimbotTab:AddCategory("Legitbot", 1)
+local MainTabCategoryAimSetting = MainTab:AddCategory("Aim Setting", 1)
 
-AimbotTabCategoryLegitbot:AddToggle("Enabled", false, "AimbotTabCategoryLegitbotEnabled", function(val)
+MainTabCategoryAimSetting:AddToggle("Enabled", false, "MainTabCategoryAimSettingEnabled", function(val)
 	if val == true then
-		LegitbotLoop = RunService.RenderStepped:Connect(function()
+		AimSettingLoop = RunService.RenderStepped:Connect(function()
 			if library.base.Window.Visible == false and IsAlive(LocalPlayer) then
-				if library.pointers.AimbotTabCategoryLegitbotKeybind.value == nil or (library.pointers.AimbotTabCategoryLegitbotKeybind.value.EnumType == Enum.KeyCode and UserInputService:IsKeyDown(library.pointers.AimbotTabCategoryLegitbotKeybind.value)) or (library.pointers.AimbotTabCategoryLegitbotKeybind.value.EnumType == Enum.UserInputType and UserInputService:IsMouseButtonPressed(library.pointers.AimbotTabCategoryLegitbotKeybind.value)) then
-					plr = GetLegitbotTarget()
+				if library.pointers.MainTabCategoryAimSettingKeybind.value == nil or (library.pointers.MainTabCategoryAimSettingKeybind.value.EnumType == Enum.KeyCode and UserInputService:IsKeyDown(library.pointers.MainTabCategoryAimSettingKeybind.value)) or (library.pointers.MainTabCategoryAimSettingKeybind.value.EnumType == Enum.UserInputType and UserInputService:IsMouseButtonPressed(library.pointers.MainTabCategoryAimSettingKeybind.value)) then
+					plr = GetAimSettingTarget()
 					
 					if plr ~= nil then
-						hitboxpart = GetLegitbotHitbox(plr)
+						hitboxpart = GetAimSettingHitbox(plr)
 						
 						if hitboxpart ~= nil then
 							local Vector, onScreen = CurrentCamera:WorldToScreenPoint(hitboxpart.Position)
-							local PositionX = (Mouse.X-Vector.X)/library.pointers.AimbotTabCategoryLegitbotSmoothness.value + 1
-							local PositionY = (Mouse.Y-Vector.Y)/library.pointers.AimbotTabCategoryLegitbotSmoothness.value + 1
+							local PositionX = (Mouse.X-Vector.X)/library.pointers.MainTabCategoryAimSettingSmoothness.value + 1
+							local PositionY = (Mouse.Y-Vector.Y)/library.pointers.MainTabCategoryAimSettingSmoothness.value + 1
 							
-							if library.pointers.AimbotTabCategoryLegitbotSilent.value == true then
-								SilentLegitbot.target = hitboxpart
-								SilentLegitbot.aiming = true
+							if library.pointers.MainTabCategoryAimSettingSilent.value == true then
+								SilentAimSetting.target = hitboxpart
+								SilentAimSetting.aiming = true
 							else
 								mousemove(-PositionX, -PositionY)
-								if SilentLegitbot.target ~= nil then SilentLegitbot.target = nil end
+								if SilentAimSetting.target ~= nil then SilentAimSetting.target = nil end
 							end
 						else
-							if SilentLegitbot.target ~= nil then SilentLegitbot.target = nil end
+							if SilentAimSetting.target ~= nil then SilentAimSetting.target = nil end
 						end
 					else
-						if SilentLegitbot.target ~= nil then SilentLegitbot.target = nil end
+						if SilentAimSetting.target ~= nil then SilentAimSetting.target = nil end
 					end
 				else
-					if SilentLegitbot.target ~= nil then SilentLegitbot.target = nil end
+					if SilentAimSetting.target ~= nil then SilentAimSetting.target = nil end
 				end
 			else
-				if SilentLegitbot.target ~= nil then SilentLegitbot.target = nil end
+				if SilentAimSetting.target ~= nil then SilentAimSetting.target = nil end
 			end
 		end)
-	elseif val == false and LegitbotLoop then
-		LegitbotLoop:Disconnect()
+	elseif val == false and AimSettingLoop then
+		AimSettingLoop:Disconnect()
 	end
 end)
 
-AimbotTabCategoryLegitbot:AddToggle("Silent", false, "AimbotTabCategoryLegitbotSilent")
+MainTabCategoryAimSetting:AddToggle("Silent", false, "MainTabCategoryAimSettingSilent")
 
-AimbotTabCategoryLegitbot:AddToggle("Team Check", false, "AimbotTabCategoryLegitbotTeamCheck")
+MainTabCategoryAimSetting:AddToggle("Team Check", false, "MainTabCategoryAimSettingTeamCheck")
 
-AimbotTabCategoryLegitbot:AddToggle("Visibility Check", false, "AimbotTabCategoryLegitbotVisibilityCheck")
+MainTabCategoryAimSetting:AddToggle("Visibility Check", false, "MainTabCategoryAimSettingVisibilityCheck")
 
-AimbotTabCategoryLegitbot:AddKeybind("Keybind", nil, "AimbotTabCategoryLegitbotKeybind")
+MainTabCategoryAimSetting:AddKeybind("Keybind", nil, "MainTabCategoryAimSettingKeybind")
 
-AimbotTabCategoryLegitbot:AddMultiDropdown("Hitbox", {"Head", "Chest", "Arms", "Legs"}, {"Head"}, "AimbotTabCategoryLegitbotHitbox")
+MainTabCategoryAimSetting:AddMultiDropdown("Hitbox", {"Head", "Chest", "Arms", "Legs"}, {"Head"}, "MainTabCategoryAimSettingHitbox")
 
-AimbotTabCategoryLegitbot:AddDropdown("Hitbox Priority", {"FOV", "Distance"}, "FOV", "AimbotTabCategoryLegitbotHitboxPriority")
+MainTabCategoryAimSetting:AddDropdown("Hitbox Priority", {"FOV", "Distance"}, "FOV", "MainTabCategoryAimSettingHitboxPriority")
 
-AimbotTabCategoryLegitbot:AddDropdown("Target Priority", {"FOV", "Distance"}, "FOV", "AimbotTabCategoryLegitbotTargetPriority")
+MainTabCategoryAimSetting:AddDropdown("Target Priority", {"FOV", "Distance"}, "FOV", "MainTabCategoryAimSettingTargetPriority")
 
-AimbotTabCategoryLegitbot:AddSlider("Field of View", {0, 360, 0, 1, "°"}, "AimbotTabCategoryLegitbotFOV", function(val)
+MainTabCategoryAimSetting:AddSlider("Field of View", {0, 360, 0, 1, "°"}, "MainTabCategoryAimSettingFOV", function(val)
 	FOVCircle.Radius = val
 end)
 
-AimbotTabCategoryLegitbot:AddSlider("Distance", {0, 2048, 0, 1, " studs"}, "AimbotTabCategoryLegitbotDistance")
+MainTabCategoryAimSetting:AddSlider("Distance", {0, 2048, 0, 1, " studs"}, "MainTabCategoryAimSettingDistance")
 
-AimbotTabCategoryLegitbot:AddSlider("Smoothness", {1, 30, 1, 1, ""}, "AimbotTabCategoryLegitbotSmoothness")
+MainTabCategoryAimSetting:AddSlider("Smoothness", {1, 30, 1, 1, ""}, "MainTabCategoryAimSettingSmoothness")
 
-AimbotTabCategoryLegitbot:AddSlider("Hitchance", {0, 100, 100, 1, "%"}, "AimbotTabCategoryLegitbotHitchance")
+MainTabCategoryAimSetting:AddSlider("Hitchance", {0, 100, 100, 1, "%"}, "MainTabCategoryAimSettingHitchance")
 
-local AimbotTabCategoryAntiAimbot = AimbotTab:AddCategory("Anti Aimbot", 2)
+local MainTabCategoryAntiAimbot = MainTab:AddCategory("Anti Aimbot", 2)
 
-AimbotTabCategoryAntiAimbot:AddToggle("Enabled", false, "AimbotTabCategoryAntiAimbotEnabled", function(val)
+MainTabCategoryAntiAimbot:AddToggle("Enabled", false, "MainTabCategoryAntiAimbotEnabled", function(val)
 	AntiAimbot = val
 	
 	while AntiAimbot do
-		if IsAlive(LocalPlayer) and (library.pointers.AimbotTabCategoryAntiAimbotDisableWhileClimbing.value == false or cbClient.climbing == false) then
+		if IsAlive(LocalPlayer) and (library.pointers.MainTabCategoryAntiAimbotDisableWhileClimbing.value == false or cbClient.climbing == false) then
 			function RotatePlayer(pos)
 				local Gyro = Instance.new('BodyGyro')
 				Gyro.D = 0
-				Gyro.P = (library.pointers.AimbotTabCategoryAntiAimbotYawStrenght.value * 100)
-				Gyro.MaxTorque = Vector3.new(0, (library.pointers.AimbotTabCategoryAntiAimbotYawStrenght.value * 100), 0)
+				Gyro.P = (library.pointers.MainTabCategoryAntiAimbotYawStrenght.value * 100)
+				Gyro.MaxTorque = Vector3.new(0, (library.pointers.MainTabCategoryAntiAimbotYawStrenght.value * 100), 0)
 				Gyro.Parent = LocalPlayer.Character.UpperTorso
 				Gyro.CFrame = CFrame.new(Gyro.Parent.Position, pos.Position)
 				wait()
 				Gyro:Destroy()
 			end
 			
-			if library.pointers.AimbotTabCategoryAntiAimbotRemoveHeadHitbox.value == true then
+			if library.pointers.MainTabCategoryAntiAimbotRemoveHeadHitbox.value == true then
 				if LocalPlayer.Character:FindFirstChild("HeadHB") then
 					LocalPlayer.Character.HeadHB:Destroy()
 				end
@@ -554,17 +554,17 @@ AimbotTabCategoryAntiAimbot:AddToggle("Enabled", false, "AimbotTabCategoryAntiAi
 				end
 			end
 			
-			if table.find({"Backward", "Left", "Right"}, library.pointers.AimbotTabCategoryAntiAimbotYaw.value) then
+			if table.find({"Backward", "Left", "Right"}, library.pointers.MainTabCategoryAntiAimbotYaw.value) then
 				LocalPlayer.Character.Humanoid.AutoRotate = false
 				local Angle = (
-					library.pointers.AimbotTabCategoryAntiAimbotYaw.value == "Backward" and CFrame.new(-4, 0, 0) or
-					library.pointers.AimbotTabCategoryAntiAimbotYaw.value == "Left" and CFrame.new(-180, 0, 0) or
-					library.pointers.AimbotTabCategoryAntiAimbotYaw.value == "Right" and CFrame.new(180, 0, 0)
+					library.pointers.MainTabCategoryAntiAimbotYaw.value == "Backward" and CFrame.new(-4, 0, 0) or
+					library.pointers.MainTabCategoryAntiAimbotYaw.value == "Left" and CFrame.new(-180, 0, 0) or
+					library.pointers.MainTabCategoryAntiAimbotYaw.value == "Right" and CFrame.new(180, 0, 0)
 				)
 				RotatePlayer(CurrentCamera.CFrame * Angle)
-			elseif library.pointers.AimbotTabCategoryAntiAimbotYaw.value == "Spin" then
+			elseif library.pointers.MainTabCategoryAntiAimbotYaw.value == "Spin" then
 				LocalPlayer.Character.Humanoid.AutoRotate = false
-				LocalPlayer.Character.HumanoidRootPart.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.Angles(0, math.rad(library.pointers.AimbotTabCategoryAntiAimbotYawStrenght.value), 0)
+				LocalPlayer.Character.HumanoidRootPart.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.Angles(0, math.rad(library.pointers.MainTabCategoryAntiAimbotYawStrenght.value), 0)
 			elseif LocalPlayer.Character.Humanoid.AutoRotate == false then
 				LocalPlayer.Character.Humanoid.AutoRotate = true
 			end
@@ -578,34 +578,34 @@ AimbotTabCategoryAntiAimbot:AddToggle("Enabled", false, "AimbotTabCategoryAntiAi
 	end
 end)
 
-AimbotTabCategoryAntiAimbot:AddDropdown("Pitch", {"Default", "Up", "Down", "Boneless", "Random"}, "Default", "AimbotTabCategoryAntiAimbotPitch")
+MainTabCategoryAntiAimbot:AddDropdown("Pitch", {"Default", "Up", "Down", "Boneless", "Random"}, "Default", "MainTabCategoryAntiAimbotPitch")
 
-AimbotTabCategoryAntiAimbot:AddDropdown("Yaw", {"Default", "Forward", "Backward", "Left", "Right", "Spin"}, "Default", "AimbotTabCategoryAntiAimbotYaw")
+MainTabCategoryAntiAimbot:AddDropdown("Yaw", {"Default", "Forward", "Backward", "Left", "Right", "Spin"}, "Default", "MainTabCategoryAntiAimbotYaw")
 
-AimbotTabCategoryAntiAimbot:AddSlider("Yaw Strenght", {0, 100, 50, 1, ""}, "AimbotTabCategoryAntiAimbotYawStrenght")
+MainTabCategoryAntiAimbot:AddSlider("Yaw Strenght", {0, 100, 50, 1, ""}, "MainTabCategoryAntiAimbotYawStrenght")
 
-AimbotTabCategoryAntiAimbot:AddToggle("Remove Head Hitbox", false, "AimbotTabCategoryAntiAimbotRemoveHeadHitbox")
+MainTabCategoryAntiAimbot:AddToggle("Remove Head Hitbox", false, "MainTabCategoryAntiAimbotRemoveHeadHitbox")
 
-AimbotTabCategoryAntiAimbot:AddToggle("Disable While Climbing", false, "AimbotTabCategoryAntiAimbotDisableWhileClimbing")
+MainTabCategoryAntiAimbot:AddToggle("Disable While Climbing", false, "MainTabCategoryAntiAimbotDisableWhileClimbing")
 
-AimbotTabCategoryAntiAimbot:AddKeybind("Manual Forward", nil, "AimbotTabCategoryAntiAimbotManualForward", function(val)
-	if val == true and UserInputService:GetFocusedTextBox() == nil then library.pointers.AimbotTabCategoryAntiAimbotYaw:Set("Forward") end
+MainTabCategoryAntiAimbot:AddKeybind("Manual Forward", nil, "MainTabCategoryAntiAimbotManualForward", function(val)
+	if val == true and UserInputService:GetFocusedTextBox() == nil then library.pointers.MainTabCategoryAntiAimbotYaw:Set("Forward") end
 end)
 
-AimbotTabCategoryAntiAimbot:AddKeybind("Manual Left", nil, "AimbotTabCategoryAntiAimbotManualLeft", function(val)
-	if val == true and UserInputService:GetFocusedTextBox() == nil then library.pointers.AimbotTabCategoryAntiAimbotYaw:Set("Left") end
+MainTabCategoryAntiAimbot:AddKeybind("Manual Left", nil, "MainTabCategoryAntiAimbotManualLeft", function(val)
+	if val == true and UserInputService:GetFocusedTextBox() == nil then library.pointers.MainTabCategoryAntiAimbotYaw:Set("Left") end
 end)
 
-AimbotTabCategoryAntiAimbot:AddKeybind("Manual Right", nil, "AimbotTabCategoryAntiAimbotManualRight", function(val)
-	if val == true and UserInputService:GetFocusedTextBox() == nil then library.pointers.AimbotTabCategoryAntiAimbotYaw:Set("Right") end
+MainTabCategoryAntiAimbot:AddKeybind("Manual Right", nil, "MainTabCategoryAntiAimbotManualRight", function(val)
+	if val == true and UserInputService:GetFocusedTextBox() == nil then library.pointers.MainTabCategoryAntiAimbotYaw:Set("Right") end
 end)
 
-AimbotTabCategoryAntiAimbot:AddKeybind("Manual Backward", nil, "AimbotTabCategoryAntiAimbotManualBackward", function(val)
-	if val == true and UserInputService:GetFocusedTextBox() == nil then library.pointers.AimbotTabCategoryAntiAimbotYaw:Set("Backward") end
+MainTabCategoryAntiAimbot:AddKeybind("Manual Backward", nil, "MainTabCategoryAntiAimbotManualBackward", function(val)
+	if val == true and UserInputService:GetFocusedTextBox() == nil then library.pointers.MainTabCategoryAntiAimbotYaw:Set("Backward") end
 end)
 
-AimbotTabCategoryAntiAimbot:AddKeybind("Manual Spin", nil, "AimbotTabCategoryAntiAimbotManualSpin", function(val)
-	if val == true and UserInputService:GetFocusedTextBox() == nil then library.pointers.AimbotTabCategoryAntiAimbotYaw:Set("Spin") end
+MainTabCategoryAntiAimbot:AddKeybind("Manual Spin", nil, "MainTabCategoryAntiAimbotManualSpin", function(val)
+	if val == true and UserInputService:GetFocusedTextBox() == nil then library.pointers.MainTabCategoryAntiAimbotYaw:Set("Spin") end
 end)
 
 
@@ -1545,7 +1545,7 @@ SettingsTabCategoryMain:AddButton("Server Rejoin", function()
 end)
 
 SettingsTabCategoryMain:AddButton("Copy Discord Invite", function()
-	setclipboard("https://discord.gg/")
+	setclipboard("https://discord.gg/AjnK87dskF")
 end)
 
 SettingsTabCategoryMain:AddButton("Copy Roblox Game Invite", function()
@@ -1994,7 +1994,7 @@ Mouse.Move:Connect(function()
 	end
 end)
 
-Hint.Text = "Chrome | Setting up hooks..."
+Hint.Text = "Chrome | Setting up hooks"
 
 hookfunc(getrenv().xpcall, function() end)
 
@@ -2018,12 +2018,12 @@ oldNamecall = hookfunc(mt.__namecall, newcclosure(function(self, ...)
 				elseif library.pointers.VisualsTabCategoryThirdPersonEnabled.value == true then
 					args[1] = CurrentCamera.CFrame * CFrame.new(0, 0, -library.pointers.VisualsTabCategoryThirdPersonDistance.value)
 				end
-			elseif self.Name == "ControlTurn" and library.pointers.AimbotTabCategoryAntiAimbotEnabled.value == true and library.pointers.AimbotTabCategoryAntiAimbotPitch.value ~= "Default" then
+			elseif self.Name == "ControlTurn" and library.pointers.MainTabCategoryAntiAimbotEnabled.value == true and library.pointers.MainTabCategoryAntiAimbotPitch.value ~= "Default" then
 				local angle = (
-					library.pointers.AimbotTabCategoryAntiAimbotPitch.value == "Up" and 1 or
-					library.pointers.AimbotTabCategoryAntiAimbotPitch.value == "Down" and -1 or
-					library.pointers.AimbotTabCategoryAntiAimbotPitch.value == "Boneless" and -5 or
-					library.pointers.AimbotTabCategoryAntiAimbotPitch.value == "Random" and (math.random(1,2) == 1 and 1 or -1)
+					library.pointers.MainTabCategoryAntiAimbotPitch.value == "Up" and 1 or
+					library.pointers.MainTabCategoryAntiAimbotPitch.value == "Down" and -1 or
+					library.pointers.MainTabCategoryAntiAimbotPitch.value == "Boneless" and -5 or
+					library.pointers.MainTabCategoryAntiAimbotPitch.value == "Random" and (math.random(1,2) == 1 and 1 or -1)
 				)
 				if angle then
 					args[1] = angle
@@ -2114,10 +2114,10 @@ oldNamecall = hookfunc(mt.__namecall, newcclosure(function(self, ...)
 			
 			if IsAlive(LocalPlayer) and SilentRagebot.target ~= nil then
 				args[1] = Ray.new(LocalPlayer.Character.Head.Position, (SilentRagebot.target.Position - LocalPlayer.Character.Head.Position).unit * (WeaponsData[LocalPlayer.Character.EquippedTool.Value].Range.Value * 0.1))
-			elseif IsAlive(LocalPlayer) and SilentLegitbot.target ~= nil then
+			elseif IsAlive(LocalPlayer) and SilentAimSetting.target ~= nil then
 				local hitchance = math.random(0, 100)
 				
-				if hitchance <= library.pointers.AimbotTabCategoryLegitbotHitchance.value then
+				if hitchance <= library.pointers.MainTabCategoryAimSettingHitchance.value then
 					args[1] = Ray.new(LocalPlayer.Character.Head.Position, (SilentLegitbot.target.Position - LocalPlayer.Character.Head.Position).unit * (WeaponsData[LocalPlayer.Character.EquippedTool.Value].Range.Value * 0.1))
 				end
 			end
