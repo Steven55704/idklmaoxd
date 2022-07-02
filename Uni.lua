@@ -4,6 +4,7 @@
 
 -- Settings can be found on line: 51
 -- Don't change anything if you don't understand.
+-- loadstring(game:HttpGet("https://pastebin.com/raw/uw2P2fbY", true))() the original
 
 local Plrs = game:GetService("Players")
 local Run = game:GetService("RunService")
