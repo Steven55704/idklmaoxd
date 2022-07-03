@@ -12,9 +12,14 @@
 
 Made by Steven55704
 
-Updates: General (v1)
+Updates: Chrome (v1)
 
 Coming Soon!
+- ???
+- Instant knife draw box
+
+
+Updated!
 - Silent Aim
 
 
@@ -51,8 +56,9 @@ Bugs!
 ░░╚═════╝░╚══════╝╚═╝░░╚═╝░░░╚═╝░░░╚═╝░╚════╝░╚══════╝╚═════╝░░░
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 --]]
-
---[[local Teams = game:GetService("Teams")
+--Services
+--[[
+local Teams = game:GetService("Teams")
 local Players = game:GetService("Players")
 local CoreGui = game:GetService("CoreGui")
 local Lighting = game:GetService("Lighting")
@@ -62,7 +68,6 @@ local TeleportService = game:GetService("TeleportService")
 local UserInputService = game:GetService("UserInputService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 --]]
--- Services
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local UserInputService = game:GetService("UserInputService")
@@ -77,14 +82,14 @@ local Mouse = LocalPlayer:GetMouse()
 local CurrentCamera = workspace.CurrentCamera
 
 local Hint = Instance.new("Hint", CoreGui)
---[[ Hint.Text = "General | Waiting for the game to load..." --]]
-Hint.Text = "General | Please Wait."
+--[[ Hint.Text = "Chrome | Waiting for the game to load..." --]]
+Hint.Text = "Chrome | Please Wait."
 
 repeat wait() until game:IsLoaded()
 repeat wait() until LocalPlayer.PlayerGui:FindFirstChild("GUI")
 
---[[ Hint.Text = "General | Setting up environment.." --]]
-Hint.Text = "General | Please Wait.."
+--[[ Hint.Text = "Chrome | Setting up environment.." --]]
+Hint.Text = "Chrome | Please Wait.."
 
 
 
@@ -117,49 +122,49 @@ if (listfiles == false) then return LocalPlayer:Kick("Exploit not supported! Mis
 if (isfolder == false) then return LocalPlayer:Kick("Exploit not supported! Missing: isfolder.") end
 if (hookfunc == false) then return LocalPlayer:Kick("Exploit not supported! Missing: hookfunc.") end
 
---[[ Hint.Text = "General | Setting up configuration settings..." --]]
-Hint.Text = "General | Please Wait..."
+--[[ Hint.Text = "Chrome | Setting up configuration settings..." --]]
+Hint.Text = "Chrome | Please Wait..."
 
-if not isfolder("general") then
-	print("creating general folder")
-	makefolder("general")
+if not isfolder("NewTabs") then
+	print("creating NewTabs folder")
+	makefolder("NewTabs")
 end
 
-if not isfolder("general/configs") then
-	print("creating general configs folder")
-	makefolder("general/configs")
+if not isfolder("NewTabs/configs") then
+	print("creating NewTabs configs folder")
+	makefolder("NewTabs/configs")
 end
 
-if not isfile("general/autoload.txt") then
-	print("creating general autoload file")
-	writefile("general/autoload.txt", "")
+if not isfile("NewTabs/autoload.txt") then
+	print("creating NewTabs autoload file")
+	writefile("NewTabs/autoload.txt", "")
 end
 
-if not isfile("general/custom_skins.txt") then
-	print("downloading general custom skins file")
-	writefile("general/custom_skins.txt", game:HttpGet("https://raw.githubusercontent.com/Pawel12d/hexagon/main/scripts/default_data/custom_skins.txt"))
+if not isfile("NewTabs/custom_skins.txt") then
+	print("downloading NewTabs custom skins file")
+	writefile("NewTabs/custom_skins.txt", game:HttpGet("https://raw.githubusercontent.com/Pawel12d/hexagon/main/scripts/default_data/custom_skins.txt"))
 end
 
-if not isfile("general/custom_models.txt") then
-	print("downloading general custom models file")
-	writefile("general/custom_models.txt", game:HttpGet("https://raw.githubusercontent.com/Pawel12d/hexagon/main/scripts/default_data/custom_models.txt"))
-elseif readfile("general/custom_models.txt"):find("Clone") then
-	local str = readfile("general/custom_models.txt")
-	writefile("general/custom_models.txt", str)
-	print("general is the best script!")
+if not isfile("NewTabs/custom_models.txt") then
+	print("downloading NewTabs custom models file")
+	writefile("NewTabs/custom_models.txt", game:HttpGet("https://raw.githubusercontent.com/Pawel12d/hexagon/main/scripts/default_data/custom_models.txt"))
+elseif readfile("NewTabs/custom_models.txt"):find("Clone") then
+	local str = readfile("NewTabs/custom_models.txt")
+	writefile("NewTabs/custom_models.txt", str)
+	print("Chrome is the best script!")
 end
 
-if not isfile("general/inventories.txt") then
-	print("downloading general inventories file")
-	writefile("general/inventories.txt", game:HttpGet("https://raw.githubusercontent.com/Pawel12d/hexagon/main/scripts/default_data/inventories.txt"))
+if not isfile("NewTabs/inventories.txt") then
+	print("downloading NewTabs inventories file")
+	writefile("NewTabs/inventories.txt", game:HttpGet("https://raw.githubusercontent.com/Pawel12d/hexagon/main/scripts/default_data/inventories.txt"))
 end
 
-if not isfile("general/skyboxes.txt") then
-	print("downloading general skyboxes file")
-	writefile("general/skyboxes.txt", game:HttpGet("https://raw.githubusercontent.com/Pawel12d/hexagon/main/scripts/default_data/skyboxes.txt"))
+if not isfile("NewTabs/skyboxes.txt") then
+	print("downloading NewTabs skyboxes file")
+	writefile("NewTabs/skyboxes.txt", game:HttpGet("https://raw.githubusercontent.com/Pawel12d/hexagon/main/scripts/default_data/skyboxes.txt"))
 end
 
-Hint.Text = "General | Loading."
+Hint.Text = "Chrome | Loading."
 
 
 
@@ -199,7 +204,7 @@ local DisplayChat = getsenv(LocalPlayer.PlayerGui.GUI.Main.Chats.DisplayChat)
 ░░╚══════╝░░░╚═╝░░░╚══════╝╚═╝░░╚══╝░░░╚═╝░░░╚═════╝░░░
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 --]]
---Events
+-- Events
 local Events = ReplicatedStorage.Events
 local ThrowGrenade = Events.ThrowGrenade
 local PlantC4 = Events.PlantC4
@@ -220,7 +225,7 @@ local PlantC4 = Events.PlantC4
 ░░╚═════╝░░░░╚═╝░░░╚═╝░░╚══╝╚═╝░░╚═╝╚═╝░░░░░╚═╝╚═╝░╚════╝░░░
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 --]]
--- Dynamics
+-- Dynamic
 --[[ local SilentLegitbot = {target = nil} --]]
 --[[ local SilentRagebot = {target = nil, cooldown = false} --]]
 
@@ -274,7 +279,7 @@ fix.Transparency = 0
 ░░╚═════╝░╚═╝░░╚═╝░╚════╝░╚═╝░░╚═╝░╚═════╝░╚═╝░░░░░░░
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 --]]
---Backp
+-- Backup
 local ViewmodelsBackup
 local oldOsPlatform = LocalPlayer.OsPlatform
 local oldMusicT = LocalPlayer.PlayerGui.Music.ValveT:Clone()
@@ -290,8 +295,8 @@ local Hitboxes = {
 	["Legs"] = {"LeftUpperLeg", "LeftLowerLeg", "LeftFoot", "RightUpperLeg", "RightLowerLeg", "RightFoot"}
 }
 
-local GeneralFolder = Instance.new("Folder", workspace)
-GeneralFolder.Name = "GeneralFolder"
+local ChromeFolder = Instance.new("Folder", workspace)
+ChromeFolder.Name = "ChromeFolder"
 
 local Sounds = {
 	["TTT a"] = workspace.RoundEnd,
@@ -306,11 +311,11 @@ local Sounds = {
 	["Beep"] = workspace.Sounds.Beep
 }
 
-local FOVCircle = Drawing.new("Circle")
+--[[ local FOVCircle = Drawing.new("Circle") --]] 
 
 local Configs = {}
-local Inventories = loadstring("return "..readfile("general/inventories.txt"))()
-local Skyboxes = loadstring("return "..readfile("general/skyboxes.txt"))()
+local Inventories = loadstring("return "..readfile("NewTabs/inventories.txt"))()
+local Skyboxes = loadstring("return "..readfile("NewTabs/skyboxes.txt"))()
 
 local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Pawel12d/hexagon/main/scripts/ESP.lua"))()
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Pawel12d/hexagon/main/scripts/UILibrary.lua"))()
@@ -330,6 +335,7 @@ local Window = library:CreateWindow(Vector2.new(500, 500), Vector2.new((CurrentC
 ░░╚═╝░░░░░░╚═════╝░╚═╝░░╚══╝░╚════╝░░░░╚═╝░░░╚═╝░╚════╝░╚═╝░░╚══╝╚═════╝░░░
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 --]]
+--Functions
 local function RandomString(length, strings)
 	local strings = strings or {
 		"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",
@@ -451,14 +457,14 @@ function GetSpectators()
 	return CurrentSpectators
 end
 
-
+--[[
 local function GetLegitbotTarget()
 	local target,oldval = nil,math.huge
 	
 	for i,v in pairs(Players:GetPlayers()) do
 		if IsAlive(v) and v ~= LocalPlayer and not v.Character:FindFirstChild("ForceField") then
 			if library.pointers.AimbotTabCategoryLegitbotTeamCheck.value == false or GetTeam(v) ~= GetTeam(LocalPlayer) then
-				if library.pointers.AimbotTabCategoryLegitbotVisibilityCheck.value == false or IsVisible(v.Character.Head.Position, {v.Character, LocalPlayer.Character, GeneralFolder, CurrentCamera}) == true then
+				if library.pointers.AimbotTabCategoryLegitbotVisibilityCheck.value == false or IsVisible(v.Character.Head.Position, {v.Character, LocalPlayer.Character, ChromeFolder, CurrentCamera}) == true then
 					local Vector, onScreen = CurrentCamera:WorldToScreenPoint(v.Character.HumanoidRootPart.Position)
 					local FOV = (Vector2.new(Mouse.X, Mouse.Y) - Vector2.new(Vector.X, Vector.Y)).magnitude
 					
@@ -493,7 +499,9 @@ local function GetLegitbotTarget()
 	
 	return nil
 end
+--]]
 
+--[[
 local function GetLegitbotHitbox(plr)
 	local target,oldval = nil,math.huge
 	
@@ -528,6 +536,7 @@ local function GetLegitbotHitbox(plr)
 	
 	return nil
 end
+--]]
 
 local function TableToNames(tbl, alt)
 	local otp = {}
@@ -640,7 +649,7 @@ end
 ░░░╚═════╝░░╚═════╝░╚═╝░░
 ░░░░░░░░░░░░░░░░░░░░░░░░░
 --]]
--- 
+-- GUI
 local AimbotTab = Window:CreateTab("Aimbot")
 
 local AimbotTabCategoryLegitbot = AimbotTab:AddCategory("Legitbot", 1)
@@ -929,13 +938,13 @@ VisualsTabCategoryOthers:AddColorPicker("Ambient", Color3.new(1,1,1), "VisualsTa
 end)
 
 VisualsTabCategoryOthers:AddDropdown("Skybox", TableToNames(Skyboxes), "Default", "VisualsTabCategoryOthersSkybox", function(val)
-	if Lighting:FindFirstChild("GENERAL_SKYBOX") then
-		Lighting:FindFirstChild("GENERAL_SKYBOX"):Destroy()
+	if Lighting:FindFirstChild("CHROME_SKYBOX") then
+		Lighting:FindFirstChild("CHROME_SKYBOX"):Destroy()
 	end
 	
 	if val ~= "Default" and rawget(Skyboxes, val) then
 		local NewSkybox = Instance.new("Sky", Lighting)
-		NewSkybox.Name = "GENERAL_SKYBOX"
+		NewSkybox.Name = "CHROME_SKYBOX"
 		
 		for i,v in pairs(rawget(Skyboxes, val)) do
 			NewSkybox[i] = v
@@ -1232,7 +1241,7 @@ end)
 MiscellaneousTabCategoryMain:AddSlider("Open Case Amount", {1, 100, 1, 1, ""}, "MiscellaneousTabCategoryMainOpenCaseAmount")
 
 local a,b = pcall(function()
-	MiscellaneousTabCategoryMain:AddMultiDropdown("Custom Models", TableToNames(loadstring("return "..readfile("general/custom_models.txt"))(), true), {}, "MiscellaneousTabCategoryMainCustomModels", function(val)
+	MiscellaneousTabCategoryMain:AddMultiDropdown("Custom Models", TableToNames(loadstring("return "..readfile("NewTabs/custom_models.txt"))(), true), {}, "MiscellaneousTabCategoryMainCustomModels", function(val)
 		if not ViewmodelsBackup then
 			ViewmodelsBackup = WeaponsViewmodels:Clone()
 		end
@@ -1241,7 +1250,7 @@ local a,b = pcall(function()
 		
 		ViewmodelsBackup:Clone().Parent = ReplicatedStorage
 		
-		for i,v in pairs(loadstring("return "..readfile("general/custom_models.txt"))()) do
+		for i,v in pairs(loadstring("return "..readfile("NewTabs/custom_models.txt"))()) do
 			if table.find(val, v.weaponname) then
 				AddCustomModel(v)
 			end
@@ -1251,12 +1260,12 @@ end)
 
 if not a then
 	print(a, b)
-	LocalPlayer:Kick("General | Your custom models file is fucked up lol! "..b)
+	LocalPlayer:Kick("Chrome | Your custom models file is fucked up lol! "..b)
 end
 
 MiscellaneousTabCategoryMain:AddDropdown("Inventory Changer", TableToNames(Inventories), "-", "MiscellaneousTabCategoryMainInventoryChanger", function(val)
 	local InventoryLoadout = LocalPlayer.PlayerGui.GUI["Inventory&Loadout"]
-	local InventoriesData = loadstring("return "..readfile("general/inventories.txt"))()
+	local InventoriesData = loadstring("return "..readfile("NewTabs/inventories.txt"))()
 	
 	if typeof(InventoriesData[val]) == "table" then
 		cbClient.CurrentInventory = InventoriesData[val]
@@ -1304,7 +1313,7 @@ end)
 
 MiscellaneousTabCategoryMain:AddButton("Inject Custom Skins", function()
 	if #nocw_s == 0 then
-		for i,v in pairs(loadstring("return "..readfile("general/custom_skins.txt"))()) do
+		for i,v in pairs(loadstring("return "..readfile("NewTabs/custom_skins.txt"))()) do
 			AddCustomSkin(v)
 			RunService.Stepped:Wait()
 		end
@@ -1613,7 +1622,7 @@ MiscellaneousTabCategoryBacktrack:AddToggle("Enabled", false, "MiscellaneousTabC
 						NewBacktrackPart.Color = library.pointers.MiscellaneousTabCategoryBacktrackColor.value
 						NewBacktrackPart.Size = v.Character.Head.Size
 						NewBacktrackPart.CFrame = v.Character.Head.CFrame
-						NewBacktrackPart.Parent = GeneralFolder
+						NewBacktrackPart.Parent = ChromeFolder
 						
 						local BacktrackTag = Instance.new("ObjectValue")
 						BacktrackTag.Parent = NewBacktrackPart
@@ -1676,7 +1685,7 @@ MiscellaneousTabCategoryChatSpam:AddToggle("Enabled", false, "MiscellaneousTabCa
 	end
 end)
 
-MiscellaneousTabCategoryChatSpam:AddTextBox("Message", "General is the best script!", "MiscellaneousTabCategoryChatSpamMessage")
+MiscellaneousTabCategoryChatSpam:AddTextBox("Message", "Chrome is the best script!", "MiscellaneousTabCategoryChatSpamMessage")
 
 local MiscellaneousTabCategoryKeybinds = MiscellaneousTab:AddCategory("Keybinds", 2)
 
@@ -1797,16 +1806,16 @@ SettingsTabCategoryConfigs:AddTextBox("Name", "", "SettingsTabCategoryConfigsNam
 SettingsTabCategoryConfigs:AddDropdown("Config", {"-"}, "-", "SettingsTabCategoryConfigsConfig")
 
 SettingsTabCategoryConfigs:AddButton("Create", function()
-    writefile("general/configs/"..library.pointers.SettingsTabCategoryConfigsName.value..".cfg", library:SaveConfiguration())
+    writefile("NewTabs/configs/"..library.pointers.SettingsTabCategoryConfigsName.value..".cfg", library:SaveConfiguration())
 end)
 
 SettingsTabCategoryConfigs:AddButton("Save", function()
-    writefile("general/configs/"..library.pointers.SettingsTabCategoryConfigsConfig.value..".cfg", library:SaveConfiguration())
+    writefile("NewTabs/configs/"..library.pointers.SettingsTabCategoryConfigsConfig.value..".cfg", library:SaveConfiguration())
 end)
 
 SettingsTabCategoryConfigs:AddButton("Load", function()
 	local a,b = pcall(function()
-		cfg = loadstring("return "..readfile("general/configs/"..library.pointers.SettingsTabCategoryConfigsConfig.value..".cfg"))()
+		cfg = loadstring("return "..readfile("NewTabs/configs/"..library.pointers.SettingsTabCategoryConfigsConfig.value..".cfg"))()
 	end)
 	
 	if a == false then
@@ -1819,7 +1828,7 @@ end)
 SettingsTabCategoryConfigs:AddButton("Refresh", function()
 	local cfgs = {}
 
-	for i,v in pairs(listfiles("general/configs")) do
+	for i,v in pairs(listfiles("NewTabs/configs")) do
 		if v:sub(-4) == ".cfg" then
 			table.insert(cfgs, v:sub(17, -5))
 		end
@@ -1829,10 +1838,10 @@ SettingsTabCategoryConfigs:AddButton("Refresh", function()
 end)
 
 SettingsTabCategoryConfigs:AddButton("Set as default", function()
-	if isfile("general/configs/"..library.pointers.SettingsTabCategoryConfigsConfig.value..".cfg") then
-		writefile("general/autoload.txt", library.pointers.SettingsTabCategoryConfigsConfig.value..".cfg")
+	if isfile("NewTabs/configs/"..library.pointers.SettingsTabCategoryConfigsConfig.value..".cfg") then
+		writefile("NewTabs/autoload.txt", library.pointers.SettingsTabCategoryConfigsConfig.value..".cfg")
 	else
-		writefile("general/autoload.txt", "")
+		writefile("NewTabs/autoload.txt", "")
 	end
 end)
 
@@ -1873,6 +1882,7 @@ SettingsTabCategoryCredits:AddLabel("")
 ░░░╚════╝░░░░╚═╝░░░╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝╚═════╝░░░
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 --]]
+-- Others
 LocalPlayer.Additionals.TotalDamage.Changed:Connect(function(val)
 	if library.pointers.MiscellaneousTabCategoryMainHitSound.value ~= "" and val ~= 0 then
 		local marker = Instance.new("Sound")
@@ -2191,8 +2201,8 @@ Mouse.Move:Connect(function()
 	end
 end)
 
---[[ Hint.Text = "General | Setting up hooks..." --]]
-Hint.Text = "General | Loading.."
+--[[ Hint.Text = "Chrome | Setting up hooks..." --]]
+Hint.Text = "Chrome | Loading.."
 
 hookfunc(getrenv().xpcall, function() end)
 
@@ -2265,7 +2275,7 @@ oldNamecall = hookfunc(mt.__namecall, newcclosure(function(self, ...)
 					end)
 				end
 				
-				if args[1].Parent == workspace.GeneralFolder then
+				if args[1].Parent == workspace.ChromeFolder then
 					if args[1].PlayerName.Value.Character and args[1].PlayerName.Value.Character.Head ~= nil then
 						args[1] = args[1].PlayerName.Value.Character.Head
 					end
@@ -2315,11 +2325,11 @@ oldNamecall = hookfunc(mt.__namecall, newcclosure(function(self, ...)
 			elseif IsAlive(LocalPlayer) and SilentLegitbot.target ~= nil then
 				local hitchance = math.random(0, 100)
 				
-                
+                --[[
 				if hitchance <= library.pointers.AimbotTabCategoryLegitbotHitchance.value then
 					args[1] = Ray.new(LocalPlayer.Character.Head.Position, (SilentLegitbot.target.Position - LocalPlayer.Character.Head.Position).unit * (WeaponsData[LocalPlayer.Character.EquippedTool.Value].Range.Value * 0.1))
 				end
-                
+                --]]
 			end
 		elseif method == "SetPrimaryPartCFrame" and self.Name == "Arms" and library.pointers.VisualsTabCategoryViewmodelEnabled.value == true then
 			args[1] = args[1] * CFrame.new(Vector3.new(math.rad(library.pointers.VisualsTabCategoryViewmodelOffsetX.value-180),math.rad(library.pointers.VisualsTabCategoryViewmodelOffsetY.value-180),math.rad(library.pointers.VisualsTabCategoryViewmodelOffsetZ.value-180))) * CFrame.Angles(0, 0, math.rad(library.pointers.VisualsTabCategoryViewmodelOffsetRoll.value-180))
@@ -2383,9 +2393,9 @@ CharacterAdded()
 table.foreach(Players:GetPlayers(), PlayerAdded)
 Players.PlayerAdded:Connect(PlayerAdded)
 
-if readfile("general/autoload.txt") ~= "" and isfile("general/configs/"..readfile("general/autoload.txt")) then
+if readfile("NewTabs/autoload.txt") ~= "" and isfile("NewTabs/configs/"..readfile("NewTabs/autoload.txt")) then
 	local a,b = pcall(function()
-		cfg = loadstring("return "..readfile("general/configs/"..readfile("general/autoload.txt")))()
+		cfg = loadstring("return "..readfile("NewTabs/configs/"..readfile("NewTabs/autoload.txt")))()
 	end)
 	
 	if a == false then
@@ -2395,8 +2405,14 @@ if readfile("general/autoload.txt") ~= "" and isfile("general/configs/"..readfil
 	end
 end
 
-print("General finished loading!")
+print("Chrome finished loading!")
 
-Hint.Text = "General | Loading finished!"
-wait(1.5)
+Hint.Text = "Chrome | Loading finished!"
+wait(2.0)
+Hint:Destroy()
+
+print("Chrome is loaded full of cracks!")
+
+Hint.Text = "Chrome | Best Script in Counter Blox!"
+wait(5.0)
 Hint:Destroy()
