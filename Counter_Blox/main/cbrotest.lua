@@ -29,15 +29,15 @@ Bugs!
 
 
 -- Services
-local Teams = game:GetService("Teams")
 local Players = game:GetService("Players")
-local CoreGui = game:GetService("CoreGui")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local UserInputService = game:GetService("UserInputService")
 local Lighting = game:GetService("Lighting")
+local Teams = game:GetService("Teams")
 local RunService = game:GetService("RunService")
 local TweenService = game:GetService("TweenService")
 local TeleportService = game:GetService("TeleportService")
-local UserInputService = game:GetService("UserInputService")
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local CoreGui = game:GetService("CoreGui")
 
 local Mouse = LocalPlayer:GetMouse()
 local LocalPlayer = Players.LocalPlayer
