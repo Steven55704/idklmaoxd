@@ -454,117 +454,75 @@ local function AddCustomModel(tbl)
 end
 
 -- GUI
-local ConfigTab = Window:CreateTab("Aimbot")
+local AimbotTab = Window:CreateTab("Aimbot")
 
-local ConfigTabCategoryAim = ConfigTab:AddCategory("Aim", 1)
+local AimbotTabCategoryLegitbot = AimbotTab:AddCategory("Legitbot", 1)
 
-ConfigTabCategoryAim:AddToggle("Activate Aim", false, "ConfigTabCategoryAimActivate", function(val)
+AimbotTabCategoryLegitbot:AddToggle("Enabled", false, "AimbotTabCategoryLegitbotEnabled", function(val)
 	if val == true then
-		AimLoop =  RunService.RenderStepped:Connect(function()
-			if library.pointers.ConfigTabCategoryAimKeybind.value == nil or (library.pointers.ConfigTabCategoryAimKeybind.value.EnumType == Enum.KeyCode and UserInputService:IsKeyDown(library.pointers.ConfigTabCategoryAimKeybind.value)) or (library.pointers.ConfigTabCategoryAimKeybind.value.EnumType == Enum.UserInputType and UserInputService:IsMouseButtonPressed(library.pointers.ConfigTabCategoryAimKeybind.value)) then
-				plr = GetClosestPlayer()
-
-				if plr ~= nil then
-					hitboxpart = GetAimPart(plr)
-
-					if hitboxpart ~= nil then
-						local Vector, onScreen = CurrentCamera:WorldToScreenPoint(hitboxpart.Position)
-						local PositionX = (Mouse.X-Vector.X)/library.pointers.ConfigTabCategoryAimSmoothness.value + 1
-						local PositionY = (Mouse.Y-Vector.Y)/library.pointers.ConfigTabCategoryAimSmoothness.value + 1
-
-						if library.pointers.ConfigTabCategoryAimAimbot.value == true then
-							AimbotAim._G.AimbotEnabled = true
+		LegitbotLoop = RunService.RenderStepped:Connect(function()
+			if library.base.Window.Visible == false and IsAlive(LocalPlayer) then
+				if library.pointers.AimbotTabCategoryLegitbotKeybind.value == nil or (library.pointers.AimbotTabCategoryLegitbotKeybind.value.EnumType == Enum.KeyCode and UserInputService:IsKeyDown(library.pointers.AimbotTabCategoryLegitbotKeybind.value)) or (library.pointers.AimbotTabCategoryLegitbotKeybind.value.EnumType == Enum.UserInputType and UserInputService:IsMouseButtonPressed(library.pointers.AimbotTabCategoryLegitbotKeybind.value)) then
+					plr = GetLegitbotTarget()
+					
+					if plr ~= nil then
+						hitboxpart = GetLegitbotHitbox(plr)
+						
+						if hitboxpart ~= nil then
+							local Vector, onScreen = CurrentCamera:WorldToScreenPoint(hitboxpart.Position)
+							local PositionX = (Mouse.X-Vector.X)/library.pointers.AimbotTabCategoryLegitbotSmoothness.value + 1
+							local PositionY = (Mouse.Y-Vector.Y)/library.pointers.AimbotTabCategoryLegitbotSmoothness.value + 1
+							
+							if library.pointers.AimbotTabCategoryLegitbotSilent.value == true then
+								SilentLegitbot.target = hitboxpart
+								SilentLegitbot.aiming = true
+							else
+								mousemove(-PositionX, -PositionY)
+								if SilentLegitbot.target ~= nil then SilentLegitbot.target = nil end
+							end
 						else
-							AimbotAim._G.AimbotEnabled = false
+							if SilentLegitbot.target ~= nil then SilentLegitbot.target = nil end
 						end
+					else
+						if SilentLegitbot.target ~= nil then SilentLegitbot.target = nil end
 					end
+				else
+					if SilentLegitbot.target ~= nil then SilentLegitbot.target = nil end
 				end
+			else
+				if SilentLegitbot.target ~= nil then SilentLegitbot.target = nil end
 			end
-		end
-	end)
-end)
-
-ConfigTabCategoryAim:AddToggle("Aimbot", false, "ConfigTabCategoryAimAimbot",)
-
-ConfigTabCategoryAim:AddToggle("Team Check", false, "ConfigTabCategoryAimTeamCheck", function(val)
-	if val == true then
-		_G.TeamCheck = true
-	else
-		_G.TeamCheck = false
+		end)
+	elseif val == false and LegitbotLoop then
+		LegitbotLoop:Disconnect()
 	end
 end)
 
-ConfigTabCategoryAim:AddKeybind("Keybind", nil, "ConfigTabCategoryAimKeybind")
+AimbotTabCategoryLegitbot:AddToggle("Silent", false, "AimbotTabCategoryLegitbotSilent")
 
-ConfigTabCategoryAim:AddToggle("Hold Keybind", nil, "ConfigTabCategoryAimHoldKeybind", function(val)
-	if val == true then
-		local Holding = true
-	else
-		local Holding = false
+AimbotTabCategoryLegitbot:AddToggle("Team Check", false, "AimbotTabCategoryLegitbotTeamCheck")
+
+AimbotTabCategoryLegitbot:AddToggle("Visibility Check", false, "AimbotTabCategoryLegitbotVisibilityCheck")
+
+AimbotTabCategoryLegitbot:AddKeybind("Keybind", nil, "AimbotTabCategoryLegitbotKeybind")
+
+AimbotTabCategoryLegitbot:AddMultiDropdown("Hitbox", {"Head", "Chest", "Arms", "Legs"}, {"Head"}, "AimbotTabCategoryLegitbotHitbox")
+
+AimbotTabCategoryLegitbot:AddDropdown("Hitbox Priority", {"FOV", "Distance"}, "FOV", "AimbotTabCategoryLegitbotHitboxPriority")
+
+AimbotTabCategoryLegitbot:AddDropdown("Target Priority", {"FOV", "Distance"}, "FOV", "AimbotTabCategoryLegitbotTargetPriority")
+
+AimbotTabCategoryLegitbot:AddSlider("Field of View", {0, 360, 0, 1, "°"}, "AimbotTabCategoryLegitbotFOV", function(val)
+	FOVCircle.Radius = val
 end)
 
-ConfigTabCategoryAim:AddSlider("Smoothness", {1, 30, 1, 1, ""}, "ConfigTabCategoryAimSmoothness")
+AimbotTabCategoryLegitbot:AddSlider("Distance", {0, 2048, 0, 1, " studs"}, "AimbotTabCategoryLegitbotDistance")
 
-ConfigTabCategoryAim:AddToggle("Aim Part", false, "ConfigTabCategoryAimHitbox", function(val)
-	if val == true then
-		_G.AimPart = "Head"
-	else
-		_G.AimPart = "Torso"
-end)
+AimbotTabCategoryLegitbot:AddSlider("Smoothness", {1, 30, 1, 1, ""}, "AimbotTabCategoryLegitbotSmoothness")
 
-MainTabCategoryAntiAimbot:AddToggle("Enabled", false, "MainTabCategoryAntiAimbotEnabled", function(val)
-	AntiAimbot = val
-	
-	while AntiAimbot do
-		if IsAlive(LocalPlayer) and (library.pointers.MainTabCategoryAntiAimbotDisableWhileClimbing.value == false or cbClient.climbing == false) then
-			function RotatePlayer(pos)
-				local Gyro = Instance.new('BodyGyro')
-				Gyro.D = 0
-				Gyro.P = (library.pointers.MainTabCategoryAntiAimbotYawStrenght.value * 100)
-				Gyro.MaxTorque = Vector3.new(0, (library.pointers.MainTabCategoryAntiAimbotYawStrenght.value * 100), 0)
-				Gyro.Parent = LocalPlayer.Character.UpperTorso
-				Gyro.CFrame = CFrame.new(Gyro.Parent.Position, pos.Position)
-				wait()
-				Gyro:Destroy()
-			end
-			
-			if library.pointers.MainTabCategoryAntiAimbotRemoveHeadHitbox.value == true then
-				if LocalPlayer.Character:FindFirstChild("HeadHB") then
-					LocalPlayer.Character.HeadHB:Destroy()
-				end
-				if LocalPlayer.Character:FindFirstChild("FakeHead") then
-					LocalPlayer.Character.FakeHead:Destroy()
-				end
-				if LocalPlayer.Character:FindFirstChild("Head") and LocalPlayer.Character.Head.Transparency ~= 0 then
-					LocalPlayer.Character.Head.Transparency = 0
-				end
-			end
-			
-			if table.find({"Backward", "Left", "Right"}, library.pointers.MainTabCategoryAntiAimbotYaw.value) then
-				LocalPlayer.Character.Humanoid.AutoRotate = false
-				local Angle = (
-					library.pointers.MainTabCategoryAntiAimbotYaw.value == "Backward" and CFrame.new(-4, 0, 0) or
-					library.pointers.MainTabCategoryAntiAimbotYaw.value == "Left" and CFrame.new(-180, 0, 0) or
-					library.pointers.MainTabCategoryAntiAimbotYaw.value == "Right" and CFrame.new(180, 0, 0)
-				)
-				RotatePlayer(CurrentCamera.CFrame * Angle)
-			elseif library.pointers.MainTabCategoryAntiAimbotYaw.value == "Spin" then
-				LocalPlayer.Character.Humanoid.AutoRotate = false
-				LocalPlayer.Character.HumanoidRootPart.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.Angles(0, math.rad(library.pointers.MainTabCategoryAntiAimbotYawStrenght.value), 0)
-			elseif LocalPlayer.Character.Humanoid.AutoRotate == false then
-				LocalPlayer.Character.Humanoid.AutoRotate = true
-			end
-		end
+AimbotTabCategoryLegitbot:AddSlider("Hitchance", {0, 100, 100, 1, "%"}, "AimbotTabCategoryLegitbotHitchance")
 
-		wait(0.02)
-	end
-	
-	if IsAlive(LocalPlayer) then
-		LocalPlayer.Character.Humanoid.AutoRotate = true
-	end
-end)
-
-local ConfigTabCategoryAntiAim = ConfigTab:AddCategory("Anti Aim", 2)
+local AimbotTabCategoryAntiAimbot = AimbotTab:AddCategory("Anti Aimbot", 2)
 
 AimbotTabCategoryAntiAimbot:AddToggle("Enabled", false, "AimbotTabCategoryAntiAimbotEnabled", function(val)
 	AntiAimbot = val
