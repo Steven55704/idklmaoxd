@@ -1,32 +1,6 @@
 --[[
-
-Made by Steven55704
-
-Updates: Chrome (v1)
-
-Coming Soon!
-- Silent Aim
-
-
-New!
-- Aimbot
-
-
-Fixes!
-- ESP not showing properly
-
-
-Bugs!
-- Laggy when you turn on "Kill All" or "Kill Enemies"
-
-
-
+l
 --]]
-
-
-
-
-
 
 -- Services
 local Players = game:GetService("Players")
@@ -44,19 +18,12 @@ local LocalPlayer = Players.LocalPlayer
 local CurrentCamera = workspace.CurrentCamera
 
 local Hint = Instance.new("Hint", CoreGui)
---[[ Hint.Text = "Chrome | Waiting for the game to load..." --]]
 Hint.Text = "Chrome | Please Wait."
 
 repeat wait() until game:IsLoaded()
 repeat wait() until LocalPlayer.PlayerGui:FindFirstChild("GUI")
 
---[[ Hint.Text = "Chrome | Setting up environment.." --]]
 Hint.Text = "Chrome | Please Wait.."
-
-
-
-
-
 
 -- Environment 
 local getrawmetatable = getrawmetatable or false
@@ -73,7 +40,6 @@ if (listfiles == false) then return LocalPlayer:Kick("Exploit not supported! Mis
 if (isfolder == false) then return LocalPlayer:Kick("Exploit not supported! Missing: isfolder.") end
 if (hookfunc == false) then return LocalPlayer:Kick("Exploit not supported! Missing: hookfunc.") end
 
---[[ Hint.Text = "Chrome | Setting up configuration settings..." --]]
 Hint.Text = "Chrome | Please Wait..."
 
 if not isfolder("chrome") then
@@ -117,31 +83,16 @@ end
 
 Hint.Text = "Chrome | Loading."
 
-
-
-
-
-
 -- Main
 local WeaponsData = ReplicatedStorage.Weapons
 local WeaponsViewmodels = ReplicatedStorage.Viewmodels
 local cbClient = getsenv(LocalPlayer.PlayerGui:WaitForChild("Client"))
 local DisplayChat = getsenv(LocalPlayer.PlayerGui.GUI.Main.Chats.DisplayChat)
 
-
-
-
-
-
 -- Events
 local Events = ReplicatedStorage.Events
 local ThrowGrenade = Events.ThrowGrenade
 local PlantC4 = Events.PlantC4
-
-
-
-
-
 
 -- Dynamic
 local AimbotAim = {target = nil}
@@ -150,11 +101,6 @@ local nocw_s = {}
 local nocw_m = {}
 local curVel = 16
 local isBhopping = false
-
-
-
-
-
 
 -- Viewmodels fix
 for i,v in pairs(WeaponsViewmodels:GetChildren()) do
@@ -168,11 +114,6 @@ local fix = WeaponsViewmodels["v_oldM4A1-S"].Silencer:Clone()
 fix.Parent = WeaponsViewmodels["v_oldM4A1-S"]
 fix.Name = "Silencer2"
 fix.Transparency = 0
-
-
-
-
-
 
 -- Backup
 local ViewmodelsBackup
@@ -216,11 +157,6 @@ local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Steven557
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Steven55704/idklmaoxd/main/Counter_Blox/scripts/UILibrary.lua"))()
 
 local Window = library:CreateWindow(Vector2.new(500, 500), Vector2.new((CurrentCamera.ViewportSize.X/2) - 250, (CurrentCamera.ViewportSize.Y/2) - 250))
-
-
-
-
-
 
 -- Functions
 local function RandomString(length, strings)
@@ -343,15 +279,6 @@ function GetSpectators()
 	
 	return CurrentSpectators
 end
-
-
-
-
-
-
-
-
-
 
 local function GetClosestPlayer()
 	local MaximumDistance = math.huge
@@ -566,9 +493,6 @@ ConfigTabCategoryAim:AddToggle("Aim Part", false, "ConfigTabCategoryAimHitbox", 
 	else
 		_G.AimPart = "Torso"
 end)
-
-
-
 
 local ConfigTabCategoryAntiAim = ConfigTab:AddCategory("Anti Aim", 2)
 
