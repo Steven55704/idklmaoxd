@@ -147,7 +147,7 @@ local Sounds = {
 	["Beep"] = workspace.Sounds.Beep
 }
 	
---[[ local FOVCircle = Drawing.new("Circle") --]]
+local FOVCircle = Drawing.new("Circle")
 
 local Configs = {}
 local Inventories = loadstring("return "..readfile("chrome/inventories.txt"))()
