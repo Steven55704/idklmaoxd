@@ -280,6 +280,83 @@ function GetSpectators()
 	return CurrentSpectators
 end
 
+local function GetAimSettingsTarget()
+	local target,oldval = nil,math.huge
+	
+	for i,v in pairs(Players:GetPlayers()) do
+		if IsAlive(v) and v ~= LocalPlayer and not v.Character:FindFirstChild("ForceField") then
+			if library.pointers.MainTabCategoryAimSettingsTeamCheck.value == false or GetTeam(v) ~= GetTeam(LocalPlayer) then
+				if library.pointers.MainTabCategoryAimSettingsVisibilityCheck.value == false or IsVisible(v.Character.Head.Position, {v.Character, LocalPlayer.Character, ChromeFolder, CurrentCamera}) == true then
+					local Vector, onScreen = CurrentCamera:WorldToScreenPoint(v.Character.HumanoidRootPart.Position)
+					local FOV = (Vector2.new(Mouse.X, Mouse.Y) - Vector2.new(Vector.X, Vector.Y)).magnitude
+					
+					if FOV < library.pointers.MainTabCategoryAimSettingsFOV.value or library.pointers.MainTabCategoryAimSettingsFOV.value == 0 then
+						if math.floor((LocalPlayer.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).magnitude) < library.pointers.MainTabCategoryAimSettingsDistance.value or library.pointers.MainTabCategoryAimSettingsDistance.value == 0 then
+							if library.pointers.MainTabCategoryAimSettingsTargetPriority.value == "FOV" then
+								local Vector, onScreen = CurrentCamera:WorldToScreenPoint(v.Character.HumanoidRootPart.Position)
+								local FOV = (Vector2.new(Mouse.X, Mouse.Y) - Vector2.new(Vector.X, Vector.Y)).magnitude
+									
+								if FOV < oldval then
+									target = v
+									oldval = FOV
+								end
+							elseif library.pointers.MainTabCategoryAimSettingsTargetPriority.value == "Distance" then
+								local Distance = math.floor((v.Character.HumanoidRootPart.Position - LocalPlayer.Character.HumanoidRootPart.Position).magnitude)
+								
+								if Distance < oldval then
+									target = v
+									oldval = Distance
+								end
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+	
+	if target ~= nil then
+		return target
+	end
+	
+	return nil
+end
+
+local function GetAimSettingsHitbox(plr)
+	local target,oldval = nil,math.huge
+	
+	for i,v in pairs(library.pointers.MainTabCategoryAimSettingsHitbox.value) do
+		for i2,v2 in pairs(Hitboxes[v]) do
+			targetpart = plr.Character:FindFirstChild(v2)
+			
+			if targetpart ~= nil then
+				if library.pointers.MainTabCategoryAimSettingsHitboxPriority.value == "FOV" then
+					local Vector, onScreen = CurrentCamera:WorldToScreenPoint(targetpart.Position)
+					local FOV = (Vector2.new(Mouse.X, Mouse.Y) - Vector2.new(Vector.X, Vector.Y)).magnitude
+					
+					if FOV < oldval then
+						target = targetpart
+						oldval = FOV
+					end
+				elseif library.pointers.MainTabCategoryAimSettingsHitboxPriority.value == "Distance" then
+					local Distance = math.floor((targetpart.Position - LocalPlayer.Character.HumanoidRootPart.Position).magnitude)
+					
+					if Distance < oldval then
+						target = targetpart
+						oldval = Distance
+					end
+				end
+			end
+		end
+	end
+	
+	if target ~= nil then
+		return target
+	end
+	
+	return nil
+end
+
 local function GetClosestPlayer()
 	local MaximumDistance = math.huge
 	local Target = nil
