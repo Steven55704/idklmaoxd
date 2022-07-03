@@ -62,6 +62,7 @@ local TeleportService = game:GetService("TeleportService")
 local UserInputService = game:GetService("UserInputService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 --]]
+-- Services
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local UserInputService = game:GetService("UserInputService")
@@ -101,6 +102,7 @@ Hint.Text = "General | Please Wait.."
 ░░╚══════╝╚═╝░░╚══╝░░░╚═╝░░░╚═╝╚═╝░░╚═╝░╚════╝░╚═╝░░╚══╝╚═╝░░░░░╚═╝╚══════╝╚═╝░░╚══╝░░░╚═╝░░░░░
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 --]]
+-- Environment
 local getrawmetatable = getrawmetatable or false
 local mousemove = mousemove or mousemoverel or mouse_move or false
 local getsenv = getsenv or false
@@ -174,6 +176,7 @@ Hint.Text = "General | Loading."
 ░░╚═╝░░░░░╚═╝╚═╝░░╚═╝╚═╝╚═╝░░╚══╝░░
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 --]]
+-- Main
 local WeaponsData = ReplicatedStorage.Weapons
 local WeaponsViewmodels = ReplicatedStorage.Viewmodels
 local cbClient = getsenv(LocalPlayer.PlayerGui:WaitForChild("Client"))
@@ -196,6 +199,7 @@ local DisplayChat = getsenv(LocalPlayer.PlayerGui.GUI.Main.Chats.DisplayChat)
 ░░╚══════╝░░░╚═╝░░░╚══════╝╚═╝░░╚══╝░░░╚═╝░░░╚═════╝░░░
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 --]]
+--Events
 local Events = ReplicatedStorage.Events
 local ThrowGrenade = Events.ThrowGrenade
 local PlantC4 = Events.PlantC4
@@ -216,6 +220,7 @@ local PlantC4 = Events.PlantC4
 ░░╚═════╝░░░░╚═╝░░░╚═╝░░╚══╝╚═╝░░╚═╝╚═╝░░░░░╚═╝╚═╝░╚════╝░░░
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 --]]
+-- Dynamics
 --[[ local SilentLegitbot = {target = nil} --]]
 --[[ local SilentRagebot = {target = nil, cooldown = false} --]]
 
@@ -241,6 +246,7 @@ local isBhopping = false
 ░░░░░╚═╝░░░╚═╝╚══════╝░░░╚═╝░░░╚═╝░░╚═╝░░░░░╚═╝░╚════╝░╚═════╝░╚══════╝╚══════╝░░░░╚═╝░░░░░╚═╝╚═╝░░╚═╝░░
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 --]]
+-- Viewmodel Fix
 for i,v in pairs(WeaponsViewmodels:GetChildren()) do
     if v:FindFirstChild("HumanoidRootPart") and v.HumanoidRootPart.Transparency ~= 1 then
         v.HumanoidRootPart.Transparency = 1
@@ -268,6 +274,7 @@ fix.Transparency = 0
 ░░╚═════╝░╚═╝░░╚═╝░╚════╝░╚═╝░░╚═╝░╚═════╝░╚═╝░░░░░░░
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 --]]
+--Backp
 local ViewmodelsBackup
 local oldOsPlatform = LocalPlayer.OsPlatform
 local oldMusicT = LocalPlayer.PlayerGui.Music.ValveT:Clone()
