@@ -640,7 +640,7 @@ end
 ░░░╚═════╝░░╚═════╝░╚═╝░░
 ░░░░░░░░░░░░░░░░░░░░░░░░░
 --]]
--- GUI
+-- 
 local AimbotTab = Window:CreateTab("Aimbot")
 
 local AimbotTabCategoryLegitbot = AimbotTab:AddCategory("Legitbot", 1)
