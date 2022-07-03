@@ -344,25 +344,6 @@ function GetSpectators()
 	return CurrentSpectators
 end
 
-local function GetKeyBind()
-	if library.pointers.ConfigTabCategoryAimKeybind.value == false then
-		if library.pointers.ConfigTabCategoryAimHoldKeybind == false then
-			UserInputService.InputEnded:Connect(function(Input)
-				if Input.UserInputType == Enum.UserInputType.MouseButton2 then
-					Holding = false
-				end
-			end)
-		else
-			UserInputService.InputBegan:Connect(function(Input)
-				if Input.UserInputType == Enum.UserInputType.MouseButton2 then
-					Holding = true
-				end
-			end)
-		end
-	end
-end
-
-
 
 
 
