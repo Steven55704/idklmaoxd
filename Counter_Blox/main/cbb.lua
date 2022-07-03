@@ -299,7 +299,7 @@ local Sounds = {
 	["Beep"] = workspace.Sounds.Beep
 }
 
---[[ local FOVCircle = Drawing.new("Circle") --]] 
+local FOVCircle = Drawing.new("Circle")
 
 local Configs = {}
 local Inventories = loadstring("return "..readfile("general/inventories.txt"))()
@@ -444,7 +444,7 @@ function GetSpectators()
 	return CurrentSpectators
 end
 
---[[
+
 local function GetLegitbotTarget()
 	local target,oldval = nil,math.huge
 	
@@ -486,9 +486,7 @@ local function GetLegitbotTarget()
 	
 	return nil
 end
---]]
 
---[[
 local function GetLegitbotHitbox(plr)
 	local target,oldval = nil,math.huge
 	
@@ -523,7 +521,6 @@ local function GetLegitbotHitbox(plr)
 	
 	return nil
 end
---]]
 
 local function TableToNames(tbl, alt)
 	local otp = {}
@@ -2311,11 +2308,11 @@ oldNamecall = hookfunc(mt.__namecall, newcclosure(function(self, ...)
 			elseif IsAlive(LocalPlayer) and SilentLegitbot.target ~= nil then
 				local hitchance = math.random(0, 100)
 				
-                --[[
+                
 				if hitchance <= library.pointers.AimbotTabCategoryLegitbotHitchance.value then
 					args[1] = Ray.new(LocalPlayer.Character.Head.Position, (SilentLegitbot.target.Position - LocalPlayer.Character.Head.Position).unit * (WeaponsData[LocalPlayer.Character.EquippedTool.Value].Range.Value * 0.1))
 				end
-                --]]
+                
 			end
 		elseif method == "SetPrimaryPartCFrame" and self.Name == "Arms" and library.pointers.VisualsTabCategoryViewmodelEnabled.value == true then
 			args[1] = args[1] * CFrame.new(Vector3.new(math.rad(library.pointers.VisualsTabCategoryViewmodelOffsetX.value-180),math.rad(library.pointers.VisualsTabCategoryViewmodelOffsetY.value-180),math.rad(library.pointers.VisualsTabCategoryViewmodelOffsetZ.value-180))) * CFrame.Angles(0, 0, math.rad(library.pointers.VisualsTabCategoryViewmodelOffsetRoll.value-180))
