@@ -58,12 +58,12 @@ end
 
 if not isfile("chrome/custom_skins.txt") then
 	print("downloading chrome custom skins file")
-	writefile("chrome/custom_skins.txt", game:HttpGet("https://raw.githubusercontent.com/Pawel12d/chrome/main/scripts/default_data/custom_skins.txt"))
+	writefile("chrome/custom_skins.txt", game:HttpGet("https://raw.githubusercontent.com/Pawel12d/hexagon/main/scripts/default_data/custom_skins.txt"))
 end
 
 if not isfile("chrome/custom_models.txt") then
 	print("downloading chrome custom models file")
-	writefile("chrome/custom_models.txt", game:HttpGet("https://raw.githubusercontent.com/Pawel12d/chrome/main/scripts/default_data/custom_models.txt"))
+	writefile("chrome/custom_models.txt", game:HttpGet("https://raw.githubusercontent.com/Pawel12d/hexagon/main/scripts/default_data/custom_models.txt"))
 elseif readfile("chrome/custom_models.txt"):find("Clone") then
 	local str = readfile("chrome/custom_models.txt")
 	writefile("chrome/custom_models.txt", str)
@@ -72,12 +72,12 @@ end
 
 if not isfile("chrome/inventories.txt") then
 	print("downloading chrome inventories file")
-	writefile("chrome/inventories.txt", game:HttpGet("https://raw.githubusercontent.com/Pawel12d/chrome/main/scripts/default_data/inventories.txt"))
+	writefile("chrome/inventories.txt", game:HttpGet("https://raw.githubusercontent.com/Pawel12d/hexagon/main/scripts/default_data/inventories.txt"))
 end
 
 if not isfile("chrome/skyboxes.txt") then
 	print("downloading chrome skyboxes file")
-	writefile("chrome/skyboxes.txt", game:HttpGet("https://raw.githubusercontent.com/Pawel12d/chrome/main/scripts/default_data/skyboxes.txt"))
+	writefile("chrome/skyboxes.txt", game:HttpGet("https://raw.githubusercontent.com/Pawel12d/hexagon/main/scripts/default_data/skyboxes.txt"))
 end
 
 Hint.Text = "Chrome | Loading..."
@@ -153,8 +153,8 @@ local Configs = {}
 local Inventories = loadstring("return "..readfile("chrome/inventories.txt"))()
 local Skyboxes = loadstring("return "..readfile("chrome/skyboxes.txt"))()
 
-local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Pawel12d/chrome/main/scripts/ESP.lua"))()
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Pawel12d/chrome/main/scripts/UILibrary.lua"))()
+local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Pawel12d/hexagon/main/scripts/ESP.lua"))()
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Pawel12d/hexagon/main/scripts/UILibrary.lua"))()
 
 local Window = library:CreateWindow(Vector2.new(500, 500), Vector2.new((CurrentCamera.ViewportSize.X/2) - 250, (CurrentCamera.ViewportSize.Y/2) - 250))
 
