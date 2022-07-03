@@ -212,7 +212,7 @@ local Configs = {}
 local Inventories = loadstring("return "..readfile("chrome/inventories.txt"))()
 local Skyboxes = loadstring("return "..readfile("chrome/skyboxes.txt"))()
 
-local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Steven55704/idklmaoxd/main/Counter_Blox/scripts/ESP.lua"))()
+local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Steven55704/idklmaoxd/main/Counter_Blox/scripts/Esp.lua"))()
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Steven55704/idklmaoxd/main/Counter_Blox/scripts/UILibrary.lua"))()
 
 local Window = library:CreateWindow(Vector2.new(500, 500), Vector2.new((CurrentCamera.ViewportSize.X/2) - 250, (CurrentCamera.ViewportSize.Y/2) - 250))
