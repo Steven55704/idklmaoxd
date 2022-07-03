@@ -280,70 +280,34 @@ function GetSpectators()
 	return CurrentSpectators
 end
 
-local function GetKeyBind()
-	if library.pointers.ConfigTabCategoryAimKeybind.value == false then
-		if library.pointers.ConfigTabCategoryAimHoldKeybind == false then
-			UserInputService.InputEnded:Connect(function(Input)
-				if Input.UserInputType == Enum.UserInputType.MouseButton2 then
-					Holding = false
-				end
-			end)
-		else
-			UserInputService.InputBegan:Connect(function(Input)
-				if Input.UserInputType == Enum.UserInputType.MouseButton2 then
-					Holding = true
-				end
-			end)
-		end
-	end
-end
 
-
-
-
-
-
-
-
-
-
-
-local function GetClosestPlayer()
-	local MaximumDistance = math.huge
-	local Target = nil
-  
-  	coroutine.wrap(function()
-    		wait(20); MaximumDistance = math.huge -- Reset the MaximumDistance so that the Aimbot doesn't remember it as a very small variable and stop capturing players...
-  	end)()
-
-	for _, v in next, Players:GetPlayers() do
-		if v.Name ~= LocalPlayer.Name then
-			if _G.TeamCheck == true then
-				if v.Team ~= LocalPlayer.Team then
-					if v.Character ~= nil then
-						if v.Character:FindFirstChild("HumanoidRootPart") ~= nil then
-							if v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("Humanoid").Health ~= 0 then
-								local ScreenPoint = Camera:WorldToScreenPoint(v.Character:WaitForChild("HumanoidRootPart", math.huge).Position)
-								local VectorDistance = (Vector2.new(UserInputService:GetMouseLocation().X, UserInputService:GetMouseLocation().Y) - Vector2.new(ScreenPoint.X, ScreenPoint.Y)).Magnitude
-								
-								if VectorDistance < MaximumDistance then
-									Target = v
-                  							MaximumDistance = VectorDistance
+local function GetLegitbotTarget()
+	local target,oldval = nil,math.huge
+	
+	for i,v in pairs(Players:GetPlayers()) do
+		if IsAlive(v) and v ~= LocalPlayer and not v.Character:FindFirstChild("ForceField") then
+			if library.pointers.AimbotTabCategoryLegitbotTeamCheck.value == false or GetTeam(v) ~= GetTeam(LocalPlayer) then
+				if library.pointers.AimbotTabCategoryLegitbotVisibilityCheck.value == false or IsVisible(v.Character.Head.Position, {v.Character, LocalPlayer.Character, ChromeFolder, CurrentCamera}) == true then
+					local Vector, onScreen = CurrentCamera:WorldToScreenPoint(v.Character.HumanoidRootPart.Position)
+					local FOV = (Vector2.new(Mouse.X, Mouse.Y) - Vector2.new(Vector.X, Vector.Y)).magnitude
+					
+					if FOV < library.pointers.AimbotTabCategoryLegitbotFOV.value or library.pointers.AimbotTabCategoryLegitbotFOV.value == 0 then
+						if math.floor((LocalPlayer.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).magnitude) < library.pointers.AimbotTabCategoryLegitbotDistance.value or library.pointers.AimbotTabCategoryLegitbotDistance.value == 0 then
+							if library.pointers.AimbotTabCategoryLegitbotTargetPriority.value == "FOV" then
+								local Vector, onScreen = CurrentCamera:WorldToScreenPoint(v.Character.HumanoidRootPart.Position)
+								local FOV = (Vector2.new(Mouse.X, Mouse.Y) - Vector2.new(Vector.X, Vector.Y)).magnitude
+									
+								if FOV < oldval then
+									target = v
+									oldval = FOV
 								end
-							end
-						end
-					end
-				end
-			else
-				if v.Character ~= nil then
-					if v.Character:FindFirstChild("HumanoidRootPart") ~= nil then
-						if v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("Humanoid").Health ~= 0 then
-							local ScreenPoint = Camera:WorldToScreenPoint(v.Character:WaitForChild("HumanoidRootPart", math.huge).Position)
-							local VectorDistance = (Vector2.new(UserInputService:GetMouseLocation().X, UserInputService:GetMouseLocation().Y) - Vector2.new(ScreenPoint.X, ScreenPoint.Y)).Magnitude
-							
-							if VectorDistance < MaximumDistance then
-								Target = v
-               							MaximumDistance = VectorDistance
+							elseif library.pointers.AimbotTabCategoryLegitbotTargetPriority.value == "Distance" then
+								local Distance = math.floor((v.Character.HumanoidRootPart.Position - LocalPlayer.Character.HumanoidRootPart.Position).magnitude)
+								
+								if Distance < oldval then
+									target = v
+									oldval = Distance
+								end
 							end
 						end
 					end
@@ -351,8 +315,47 @@ local function GetClosestPlayer()
 			end
 		end
 	end
+	
+	if target ~= nil then
+		return target
+	end
+	
+	return nil
+end
 
-	return Target
+local function GetLegitbotHitbox(plr)
+	local target,oldval = nil,math.huge
+	
+	for i,v in pairs(library.pointers.AimbotTabCategoryLegitbotHitbox.value) do
+		for i2,v2 in pairs(Hitboxes[v]) do
+			targetpart = plr.Character:FindFirstChild(v2)
+			
+			if targetpart ~= nil then
+				if library.pointers.AimbotTabCategoryLegitbotHitboxPriority.value == "FOV" then
+					local Vector, onScreen = CurrentCamera:WorldToScreenPoint(targetpart.Position)
+					local FOV = (Vector2.new(Mouse.X, Mouse.Y) - Vector2.new(Vector.X, Vector.Y)).magnitude
+					
+					if FOV < oldval then
+						target = targetpart
+						oldval = FOV
+					end
+				elseif library.pointers.AimbotTabCategoryLegitbotHitboxPriority.value == "Distance" then
+					local Distance = math.floor((targetpart.Position - LocalPlayer.Character.HumanoidRootPart.Position).magnitude)
+					
+					if Distance < oldval then
+						target = targetpart
+						oldval = Distance
+					end
+				end
+			end
+		end
+	end
+	
+	if target ~= nil then
+		return target
+	end
+	
+	return nil
 end
 
 local function TableToNames(tbl, alt)
