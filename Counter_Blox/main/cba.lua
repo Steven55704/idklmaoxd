@@ -1621,7 +1621,7 @@ end)
 
 SettingsTabCategoryConfigs:AddButton("Load", function()
 	local a,b = pcall(function()
-		cfg = loadstring("return "..readfile("chrome/configs/"..library.pointers.SettingsTabCategoryConfigsConfig.value..".cfg"))()
+		cfg = loadstring("return"..readfile("chrome/configs/"..library.pointers.SettingsTabCategoryConfigsConfig.value..".cfg"))()
 	end)
 	
 	if a == false then
@@ -2185,7 +2185,7 @@ Players.PlayerAdded:Connect(PlayerAdded)
 
 if readfile("chrome/autoload.txt") ~= "" and isfile("chrome/configs/"..readfile("chrome/autoload.txt")) then
 	local a,b = pcall(function()
-		cfg = loadstring("return "..readfile("chrome/configs/"..readfile("chrome/autoload.txt")))()
+		cfg = loadstring("return"..readfile("chrome/configs/"..readfile("chrome/autoload.txt")))()
 	end)
 	
 	if a == false then
