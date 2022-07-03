@@ -135,12 +135,12 @@ end
 
 if not isfile("general/custom_skins.txt") then
 	print("downloading general custom skins file")
-	writefile("general/custom_skins.txt", game:HttpGet("https://raw.githubusercontent.com/Steven55704/Roblox/main/CounterBlox/General/default_data/custom_skins.txt"))
+	writefile("general/custom_skins.txt", game:HttpGet("https://raw.githubusercontent.com/Steven55704/Roblox/main/CounterBlox/Chrome/default_data/custom_skins.txt"))
 end
 
 if not isfile("general/custom_models.txt") then
 	print("downloading general custom models file")
-	writefile("general/custom_models.txt", game:HttpGet("https://raw.githubusercontent.com/Steven55704/Roblox/main/CounterBlox/General/default_data/custom_models.txt"))
+	writefile("general/custom_models.txt", game:HttpGet("https://raw.githubusercontent.com/Steven55704/Roblox/main/CounterBlox/Chrome/default_data/custom_models.txt"))
 elseif readfile("general/custom_models.txt"):find("Clone") then
 	local str = readfile("general/custom_models.txt")
 	writefile("general/custom_models.txt", str)
@@ -149,12 +149,12 @@ end
 
 if not isfile("general/inventories.txt") then
 	print("downloading general inventories file")
-	writefile("general/inventories.txt", game:HttpGet("https://raw.githubusercontent.com/Steven55704/Roblox/main/CounterBlox/General/default_data/inventories.txt"))
+	writefile("general/inventories.txt", game:HttpGet("https://raw.githubusercontent.com/Steven55704/Roblox/main/CounterBlox/Chrome/default_data/inventories.txt"))
 end
 
 if not isfile("general/skyboxes.txt") then
 	print("downloading general skyboxes file")
-	writefile("general/skyboxes.txt", game:HttpGet("https://raw.githubusercontent.com/Steven55704/Roblox/main/CounterBlox/General/default_data/skyboxes.txt"))
+	writefile("general/skyboxes.txt", game:HttpGet("https://raw.githubusercontent.com/Steven55704/Roblox/main/CounterBlox/Chrome/default_data/skyboxes.txt"))
 end
 
 Hint.Text = "General | Loading."
@@ -305,8 +305,8 @@ local Configs = {}
 local Inventories = loadstring("return "..readfile("general/inventories.txt"))()
 local Skyboxes = loadstring("return "..readfile("general/skyboxes.txt"))()
 
-local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Steven55704/Roblox/main/CounterBlox/General/scripts/ESP.lua"))()
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Steven55704/Roblox/main/CounterBlox/General/scripts/UILibrary.lua"))()
+local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Steven55704/Roblox/main/CounterBlox/Chrome/scripts/ESP.lua"))()
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Steven55704/Roblox/main/CounterBlox/Chrome/scripts/UILibrary.lua"))()
 
 local Window = library:CreateWindow(Vector2.new(500, 500), Vector2.new((CurrentCamera.ViewportSize.X/2) - 250, (CurrentCamera.ViewportSize.Y/2) - 250))
 
