@@ -17,12 +17,12 @@ local Mouse = LocalPlayer:GetMouse()
 local CurrentCamera = workspace.CurrentCamera
 
 local Hint = Instance.new("Hint", CoreGui)
-Hint.Text = "Hexagon | Waiting for the game to load..."
+Hint.Text = "Chrome | Waiting for the game to load..."
 
 repeat wait() until game:IsLoaded()
 repeat wait() until LocalPlayer.PlayerGui:FindFirstChild("GUI")
 
-Hint.Text = "Hexagon | Setting up environment..."
+Hint.Text = "Chrome | Setting up environment..."
 
 -- Environment 
 local getrawmetatable = getrawmetatable or false
@@ -39,48 +39,48 @@ if (listfiles == false) then return LocalPlayer:Kick("Exploit not supported! Mis
 if (isfolder == false) then return LocalPlayer:Kick("Exploit not supported! Missing: isfolder.") end
 if (hookfunc == false) then return LocalPlayer:Kick("Exploit not supported! Missing: hookfunc.") end
 
-Hint.Text = "Hexagon | Setting up configuration settings..."
+Hint.Text = "Chrome | Setting up configuration settings..."
 
-if not isfolder("hexagon") then
-	print("creating hexagon folder")
-	makefolder("hexagon")
+if not isfolder("chrome") then
+	print("creating chrome folder")
+	makefolder("chrome")
 end
 
-if not isfolder("hexagon/configs") then
-	print("creating hexagon configs folder")
-	makefolder("hexagon/configs")
+if not isfolder("chrome/configs") then
+	print("creating chrome configs folder")
+	makefolder("chrome/configs")
 end
 
-if not isfile("hexagon/autoload.txt") then
-	print("creating hexagon autoload file")
-	writefile("hexagon/autoload.txt", "")
+if not isfile("chrome/autoload.txt") then
+	print("creating chrome autoload file")
+	writefile("chrome/autoload.txt", "")
 end
 
-if not isfile("hexagon/custom_skins.txt") then
-	print("downloading hexagon custom skins file")
-	writefile("hexagon/custom_skins.txt", game:HttpGet("https://raw.githubusercontent.com/Pawel12d/hexagon/main/scripts/default_data/custom_skins.txt"))
+if not isfile("chrome/custom_skins.txt") then
+	print("downloading chrome custom skins file")
+	writefile("chrome/custom_skins.txt", game:HttpGet("https://raw.githubusercontent.com/Pawel12d/chrome/main/scripts/default_data/custom_skins.txt"))
 end
 
-if not isfile("hexagon/custom_models.txt") then
-	print("downloading hexagon custom models file")
-	writefile("hexagon/custom_models.txt", game:HttpGet("https://raw.githubusercontent.com/Pawel12d/hexagon/main/scripts/default_data/custom_models.txt"))
-elseif readfile("hexagon/custom_models.txt"):find("Clone") then
-	local str = readfile("hexagon/custom_models.txt")
-	writefile("hexagon/custom_models.txt", str)
+if not isfile("chrome/custom_models.txt") then
+	print("downloading chrome custom models file")
+	writefile("chrome/custom_models.txt", game:HttpGet("https://raw.githubusercontent.com/Pawel12d/chrome/main/scripts/default_data/custom_models.txt"))
+elseif readfile("chrome/custom_models.txt"):find("Clone") then
+	local str = readfile("chrome/custom_models.txt")
+	writefile("chrome/custom_models.txt", str)
 	print("exodus winning $$$")
 end
 
-if not isfile("hexagon/inventories.txt") then
-	print("downloading hexagon inventories file")
-	writefile("hexagon/inventories.txt", game:HttpGet("https://raw.githubusercontent.com/Pawel12d/hexagon/main/scripts/default_data/inventories.txt"))
+if not isfile("chrome/inventories.txt") then
+	print("downloading chrome inventories file")
+	writefile("chrome/inventories.txt", game:HttpGet("https://raw.githubusercontent.com/Pawel12d/chrome/main/scripts/default_data/inventories.txt"))
 end
 
-if not isfile("hexagon/skyboxes.txt") then
-	print("downloading hexagon skyboxes file")
-	writefile("hexagon/skyboxes.txt", game:HttpGet("https://raw.githubusercontent.com/Pawel12d/hexagon/main/scripts/default_data/skyboxes.txt"))
+if not isfile("chrome/skyboxes.txt") then
+	print("downloading chrome skyboxes file")
+	writefile("chrome/skyboxes.txt", game:HttpGet("https://raw.githubusercontent.com/Pawel12d/chrome/main/scripts/default_data/skyboxes.txt"))
 end
 
-Hint.Text = "Hexagon | Loading..."
+Hint.Text = "Chrome | Loading..."
 
 -- Main
 local WeaponsData = ReplicatedStorage.Weapons
@@ -131,8 +131,8 @@ local Hitboxes = {
 	["Legs"] = {"LeftUpperLeg", "LeftLowerLeg", "LeftFoot", "RightUpperLeg", "RightLowerLeg", "RightFoot"}
 }
 
-local HexagonFolder = Instance.new("Folder", workspace)
-HexagonFolder.Name = "HexagonFolder"
+local ChromeFolder = Instance.new("Folder", workspace)
+ChromeFolder.Name = "ChromeFolder"
 
 local Sounds = {
 	["TTT a"] = workspace.RoundEnd,
@@ -150,11 +150,11 @@ local Sounds = {
 local FOVCircle = Drawing.new("Circle")
 
 local Configs = {}
-local Inventories = loadstring("return "..readfile("hexagon/inventories.txt"))()
-local Skyboxes = loadstring("return "..readfile("hexagon/skyboxes.txt"))()
+local Inventories = loadstring("return "..readfile("chrome/inventories.txt"))()
+local Skyboxes = loadstring("return "..readfile("chrome/skyboxes.txt"))()
 
-local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Pawel12d/hexagon/main/scripts/ESP.lua"))()
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Pawel12d/hexagon/main/scripts/UILibrary.lua"))()
+local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Pawel12d/chrome/main/scripts/ESP.lua"))()
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Pawel12d/chrome/main/scripts/UILibrary.lua"))()
 
 local Window = library:CreateWindow(Vector2.new(500, 500), Vector2.new((CurrentCamera.ViewportSize.X/2) - 250, (CurrentCamera.ViewportSize.Y/2) - 250))
 
@@ -286,7 +286,7 @@ local function GetLegitbotTarget()
 	for i,v in pairs(Players:GetPlayers()) do
 		if IsAlive(v) and v ~= LocalPlayer and not v.Character:FindFirstChild("ForceField") then
 			if library.pointers.AimbotTabCategoryLegitbotTeamCheck.value == false or GetTeam(v) ~= GetTeam(LocalPlayer) then
-				if library.pointers.AimbotTabCategoryLegitbotVisibilityCheck.value == false or IsVisible(v.Character.Head.Position, {v.Character, LocalPlayer.Character, HexagonFolder, CurrentCamera}) == true then
+				if library.pointers.AimbotTabCategoryLegitbotVisibilityCheck.value == false or IsVisible(v.Character.Head.Position, {v.Character, LocalPlayer.Character, ChromeFolder, CurrentCamera}) == true then
 					local Vector, onScreen = CurrentCamera:WorldToScreenPoint(v.Character.HumanoidRootPart.Position)
 					local FOV = (Vector2.new(Mouse.X, Mouse.Y) - Vector2.new(Vector.X, Vector.Y)).magnitude
 					
@@ -744,13 +744,13 @@ VisualsTabCategoryOthers:AddColorPicker("Ambient", Color3.new(1,1,1), "VisualsTa
 end)
 
 VisualsTabCategoryOthers:AddDropdown("Skybox", TableToNames(Skyboxes), "Default", "VisualsTabCategoryOthersSkybox", function(val)
-	if Lighting:FindFirstChild("HEXAGON_SKYBOX") then
-		Lighting:FindFirstChild("HEXAGON_SKYBOX"):Destroy()
+	if Lighting:FindFirstChild("CHROME_SKYBOX") then
+		Lighting:FindFirstChild("CHROME_SKYBOX"):Destroy()
 	end
 	
 	if val ~= "Default" and rawget(Skyboxes, val) then
 		local NewSkybox = Instance.new("Sky", Lighting)
-		NewSkybox.Name = "HEXAGON_SKYBOX"
+		NewSkybox.Name = "CHROME_SKYBOX"
 		
 		for i,v in pairs(rawget(Skyboxes, val)) do
 			NewSkybox[i] = v
@@ -1047,7 +1047,7 @@ end)
 MiscellaneousTabCategoryMain:AddSlider("Open Case Amount", {1, 100, 1, 1, ""}, "MiscellaneousTabCategoryMainOpenCaseAmount")
 
 local a,b = pcall(function()
-	MiscellaneousTabCategoryMain:AddMultiDropdown("Custom Models", TableToNames(loadstring("return "..readfile("hexagon/custom_models.txt"))(), true), {}, "MiscellaneousTabCategoryMainCustomModels", function(val)
+	MiscellaneousTabCategoryMain:AddMultiDropdown("Custom Models", TableToNames(loadstring("return "..readfile("chrome/custom_models.txt"))(), true), {}, "MiscellaneousTabCategoryMainCustomModels", function(val)
 		if not ViewmodelsBackup then
 			ViewmodelsBackup = WeaponsViewmodels:Clone()
 		end
@@ -1056,7 +1056,7 @@ local a,b = pcall(function()
 		
 		ViewmodelsBackup:Clone().Parent = ReplicatedStorage
 		
-		for i,v in pairs(loadstring("return "..readfile("hexagon/custom_models.txt"))()) do
+		for i,v in pairs(loadstring("return "..readfile("chrome/custom_models.txt"))()) do
 			if table.find(val, v.weaponname) then
 				AddCustomModel(v)
 			end
@@ -1066,12 +1066,12 @@ end)
 
 if not a then
 	print(a, b)
-	LocalPlayer:Kick("Hexagon | Your custom models file is fucked up lol! "..b)
+	LocalPlayer:Kick("Chrome | Your custom models file is fucked up lol! "..b)
 end
 
 MiscellaneousTabCategoryMain:AddDropdown("Inventory Changer", TableToNames(Inventories), "-", "MiscellaneousTabCategoryMainInventoryChanger", function(val)
 	local InventoryLoadout = LocalPlayer.PlayerGui.GUI["Inventory&Loadout"]
-	local InventoriesData = loadstring("return "..readfile("hexagon/inventories.txt"))()
+	local InventoriesData = loadstring("return "..readfile("chrome/inventories.txt"))()
 	
 	if typeof(InventoriesData[val]) == "table" then
 		cbClient.CurrentInventory = InventoriesData[val]
@@ -1119,7 +1119,7 @@ end)
 
 MiscellaneousTabCategoryMain:AddButton("Inject Custom Skins", function()
 	if #nocw_s == 0 then
-		for i,v in pairs(loadstring("return "..readfile("hexagon/custom_skins.txt"))()) do
+		for i,v in pairs(loadstring("return "..readfile("chrome/custom_skins.txt"))()) do
 			AddCustomSkin(v)
 			RunService.Stepped:Wait()
 		end
@@ -1428,7 +1428,7 @@ MiscellaneousTabCategoryBacktrack:AddToggle("Enabled", false, "MiscellaneousTabC
 						NewBacktrackPart.Color = library.pointers.MiscellaneousTabCategoryBacktrackColor.value
 						NewBacktrackPart.Size = v.Character.Head.Size
 						NewBacktrackPart.CFrame = v.Character.Head.CFrame
-						NewBacktrackPart.Parent = HexagonFolder
+						NewBacktrackPart.Parent = ChromeFolder
 						
 						local BacktrackTag = Instance.new("ObjectValue")
 						BacktrackTag.Parent = NewBacktrackPart
@@ -1491,7 +1491,7 @@ MiscellaneousTabCategoryChatSpam:AddToggle("Enabled", false, "MiscellaneousTabCa
 	end
 end)
 
-MiscellaneousTabCategoryChatSpam:AddTextBox("Message", "Hexagon is the best!", "MiscellaneousTabCategoryChatSpamMessage")
+MiscellaneousTabCategoryChatSpam:AddTextBox("Message", "Chrome is the best!", "MiscellaneousTabCategoryChatSpamMessage")
 
 local MiscellaneousTabCategoryKeybinds = MiscellaneousTab:AddCategory("Keybinds", 2)
 
@@ -1612,16 +1612,16 @@ SettingsTabCategoryConfigs:AddTextBox("Name", "", "SettingsTabCategoryConfigsNam
 SettingsTabCategoryConfigs:AddDropdown("Config", {"-"}, "-", "SettingsTabCategoryConfigsConfig")
 
 SettingsTabCategoryConfigs:AddButton("Create", function()
-    writefile("hexagon/configs/"..library.pointers.SettingsTabCategoryConfigsName.value..".cfg", library:SaveConfiguration())
+    writefile("chrome/configs/"..library.pointers.SettingsTabCategoryConfigsName.value..".cfg", library:SaveConfiguration())
 end)
 
 SettingsTabCategoryConfigs:AddButton("Save", function()
-    writefile("hexagon/configs/"..library.pointers.SettingsTabCategoryConfigsConfig.value..".cfg", library:SaveConfiguration())
+    writefile("chrome/configs/"..library.pointers.SettingsTabCategoryConfigsConfig.value..".cfg", library:SaveConfiguration())
 end)
 
 SettingsTabCategoryConfigs:AddButton("Load", function()
 	local a,b = pcall(function()
-		cfg = loadstring("return "..readfile("hexagon/configs/"..library.pointers.SettingsTabCategoryConfigsConfig.value..".cfg"))()
+		cfg = loadstring("return "..readfile("chrome/configs/"..library.pointers.SettingsTabCategoryConfigsConfig.value..".cfg"))()
 	end)
 	
 	if a == false then
@@ -1634,7 +1634,7 @@ end)
 SettingsTabCategoryConfigs:AddButton("Refresh", function()
 	local cfgs = {}
 
-	for i,v in pairs(listfiles("hexagon/configs")) do
+	for i,v in pairs(listfiles("chrome/configs")) do
 		if v:sub(-4) == ".cfg" then
 			table.insert(cfgs, v:sub(17, -5))
 		end
@@ -1644,10 +1644,10 @@ SettingsTabCategoryConfigs:AddButton("Refresh", function()
 end)
 
 SettingsTabCategoryConfigs:AddButton("Set as default", function()
-	if isfile("hexagon/configs/"..library.pointers.SettingsTabCategoryConfigsConfig.value..".cfg") then
-		writefile("hexagon/autoload.txt", library.pointers.SettingsTabCategoryConfigsConfig.value..".cfg")
+	if isfile("chrome/configs/"..library.pointers.SettingsTabCategoryConfigsConfig.value..".cfg") then
+		writefile("chrome/autoload.txt", library.pointers.SettingsTabCategoryConfigsConfig.value..".cfg")
 	else
-		writefile("hexagon/autoload.txt", "")
+		writefile("chrome/autoload.txt", "")
 	end
 end)
 
@@ -1994,7 +1994,7 @@ Mouse.Move:Connect(function()
 	end
 end)
 
-Hint.Text = "Hexagon | Setting up hooks..."
+Hint.Text = "Chrome | Setting up hooks..."
 
 hookfunc(getrenv().xpcall, function() end)
 
@@ -2067,7 +2067,7 @@ oldNamecall = hookfunc(mt.__namecall, newcclosure(function(self, ...)
 					end)
 				end
 				
-				if args[1].Parent == workspace.HexagonFolder then
+				if args[1].Parent == workspace.ChromeFolder then
 					if args[1].PlayerName.Value.Character and args[1].PlayerName.Value.Character.Head ~= nil then
 						args[1] = args[1].PlayerName.Value.Character.Head
 					end
@@ -2183,9 +2183,9 @@ CharacterAdded()
 table.foreach(Players:GetPlayers(), PlayerAdded)
 Players.PlayerAdded:Connect(PlayerAdded)
 
-if readfile("hexagon/autoload.txt") ~= "" and isfile("hexagon/configs/"..readfile("hexagon/autoload.txt")) then
+if readfile("chrome/autoload.txt") ~= "" and isfile("chrome/configs/"..readfile("chrome/autoload.txt")) then
 	local a,b = pcall(function()
-		cfg = loadstring("return "..readfile("hexagon/configs/"..readfile("hexagon/autoload.txt")))()
+		cfg = loadstring("return "..readfile("chrome/configs/"..readfile("chrome/autoload.txt")))()
 	end)
 	
 	if a == false then
@@ -2195,8 +2195,8 @@ if readfile("hexagon/autoload.txt") ~= "" and isfile("hexagon/configs/"..readfil
 	end
 end
 
-print("Hexagon finished loading!")
+print("Chrome finished loading!")
 
-Hint.Text = "Hexagon | Loading finished!"
+Hint.Text = "Chrome | Loading finished!"
 wait(1.5)
 Hint:Destroy()
