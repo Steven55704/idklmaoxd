@@ -564,34 +564,88 @@ MainTabCategoryAntiAimbot:AddToggle("Enabled", false, "MainTabCategoryAntiAimbot
 	end
 end)
 
-MainTabCategoryAntiAimbot:AddDropdown("Pitch", {"Default", "Up", "Down", "Boneless", "Random"}, "Default", "MainTabCategoryAntiAimbotPitch")
+local ConfigTabCategoryAntiAim = ConfigTab:AddCategory("Anti Aim", 2)
 
-MainTabCategoryAntiAimbot:AddDropdown("Yaw", {"Default", "Forward", "Backward", "Left", "Right", "Spin"}, "Default", "MainTabCategoryAntiAimbotYaw")
+ConfigTabCategoryAntiAim:AddToggle("Enabled", false, "ConfigTabCategoryAntiAimEnabled", function(val)
+	AntiAim = val
+	
+	while AntiAim do
+		if IsAlive(LocalPlayer) and (library.pointers.ConfigTabCategoryAntiAimDisableWhileClimbing.value == false or cbClient.climbing == false) then
+			function RotatePlayer(pos)
+				local Gyro = Instance.new('BodyGyro')
+				Gyro.D = 0
+				Gyro.P = (library.pointers.ConfigTabCategoryAntiAimYawStrenght.value * 100)
+				Gyro.MaxTorque = Vector3.new(0, (library.pointers.ConfigTabCategoryAntiAimYawStrenght.value * 100), 0)
+				Gyro.Parent = LocalPlayer.Character.UpperTorso
+				Gyro.CFrame = CFrame.new(Gyro.Parent.Position, pos.Position)
+				wait()
+				Gyro:Destroy()
+			end
+			
+			if library.pointers.ConfigTabCategoryAntiAimRemoveHeadHitbox.value == true then
+				if LocalPlayer.Character:FindFirstChild("HeadHB") then
+					LocalPlayer.Character.HeadHB:Destroy()
+				end
+				if LocalPlayer.Character:FindFirstChild("FakeHead") then
+					LocalPlayer.Character.FakeHead:Destroy()
+				end
+				if LocalPlayer.Character:FindFirstChild("Head") and LocalPlayer.Character.Head.Transparency ~= 0 then
+					LocalPlayer.Character.Head.Transparency = 0
+				end
+			end
+			
+			if table.find({"Backward", "Left", "Right"}, library.pointers.ConfigTabCategoryAntiAimYaw.value) then
+				LocalPlayer.Character.Humanoid.AutoRotate = false
+				local Angle = (
+					library.pointers.ConfigTabCategoryAntiAimYaw.value == "Backward" and CFrame.new(-4, 0, 0) or
+					library.pointers.ConfigTabCategoryAntiAimYaw.value == "Left" and CFrame.new(-180, 0, 0) or
+					library.pointers.ConfigTabCategoryAntiAimYaw.value == "Right" and CFrame.new(180, 0, 0)
+				)
+				RotatePlayer(CurrentCamera.CFrame * Angle)
+			elseif library.pointers.ConfigTabCategoryAntiAimYaw.value == "Spin" then
+				LocalPlayer.Character.Humanoid.AutoRotate = false
+				LocalPlayer.Character.HumanoidRootPart.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.Angles(0, math.rad(library.pointers.ConfigTabCategoryAntiAimYawStrenght.value), 0)
+			elseif LocalPlayer.Character.Humanoid.AutoRotate == false then
+				LocalPlayer.Character.Humanoid.AutoRotate = true
+			end
+		end
 
-MainTabCategoryAntiAimbot:AddSlider("Yaw Strenght", {0, 100, 50, 1, ""}, "MainTabCategoryAntiAimbotYawStrenght")
-
-MainTabCategoryAntiAimbot:AddToggle("Remove Head Hitbox", false, "MainTabCategoryAntiAimbotRemoveHeadHitbox")
-
-MainTabCategoryAntiAimbot:AddToggle("Disable While Climbing", false, "MainTabCategoryAntiAimbotDisableWhileClimbing")
-
-MainTabCategoryAntiAimbot:AddKeybind("Manual Forward", nil, "MainTabCategoryAntiAimbotManualForward", function(val)
-	if val == true and UserInputService:GetFocusedTextBox() == nil then library.pointers.MainTabCategoryAntiAimbotYaw:Set("Forward") end
+		wait(0.02)
+	end
+	
+	if IsAlive(LocalPlayer) then
+		LocalPlayer.Character.Humanoid.AutoRotate = true
+	end
 end)
 
-MainTabCategoryAntiAimbot:AddKeybind("Manual Left", nil, "MainTabCategoryAntiAimbotManualLeft", function(val)
-	if val == true and UserInputService:GetFocusedTextBox() == nil then library.pointers.MainTabCategoryAntiAimbotYaw:Set("Left") end
+ConfigTabCategoryAntiAim:AddDropdown("Pitch", {"Default", "Up", "Down", "Boneless", "Random"}, "Default", "ConfigTabCategoryAntiAimPitch")
+
+ConfigTabCategoryAntiAim:AddDropdown("Yaw", {"Default", "Forward", "Backward", "Left", "Right", "Spin"}, "Default", "ConfigTabCategoryAntiAimYaw")
+
+ConfigTabCategoryAntiAim:AddSlider("Yaw Strenght", {0, 100, 50, 1, ""}, "ConfigTabCategoryAntiAimYawStrenght")
+
+ConfigTabCategoryAntiAim:AddToggle("Remove Head Hitbox", false, "ConfigTabCategoryAntiAimRemoveHeadHitbox")
+
+ConfigTabCategoryAntiAim:AddToggle("Disable While Climbing", false, "ConfigTabCategoryAntiAimDisableWhileClimbing")
+
+ConfigTabCategoryAntiAim:AddKeybind("Manual Forward", nil, "ConfigTabCategoryAntiAimManualForward", function(val)
+	if val == true and UserInputService:GetFocusedTextBox() == nil then library.pointers.ConfigTabCategoryAntiAimYaw:Set("Forward") end
 end)
 
-MainTabCategoryAntiAimbot:AddKeybind("Manual Right", nil, "MainTabCategoryAntiAimbotManualRight", function(val)
-	if val == true and UserInputService:GetFocusedTextBox() == nil then library.pointers.MainTabCategoryAntiAimbotYaw:Set("Right") end
+ConfigTabCategoryAntiAim:AddKeybind("Manual Left", nil, "ConfigTabCategoryAntiAimManualLeft", function(val)
+	if val == true and UserInputService:GetFocusedTextBox() == nil then library.pointers.ConfigTabCategoryAntiAimYaw:Set("Left") end
 end)
 
-MainTabCategoryAntiAimbot:AddKeybind("Manual Backward", nil, "MainTabCategoryAntiAimbotManualBackward", function(val)
-	if val == true and UserInputService:GetFocusedTextBox() == nil then library.pointers.MainTabCategoryAntiAimbotYaw:Set("Backward") end
+ConfigTabCategoryAntiAim:AddKeybind("Manual Right", nil, "ConfigTabCategoryAntiAimManualRight", function(val)
+	if val == true and UserInputService:GetFocusedTextBox() == nil then library.pointers.ConfigTabCategoryAntiAimYaw:Set("Right") end
 end)
 
-MainTabCategoryAntiAimbot:AddKeybind("Manual Spin", nil, "MainTabCategoryAntiAimbotManualSpin", function(val)
-	if val == true and UserInputService:GetFocusedTextBox() == nil then library.pointers.MainTabCategoryAntiAimbotYaw:Set("Spin") end
+ConfigTabCategoryAntiAim:AddKeybind("Manual Backward", nil, "ConfigTabCategoryAntiAimManualBackward", function(val)
+	if val == true and UserInputService:GetFocusedTextBox() == nil then library.pointers.ConfigTabCategoryAntiAimYaw:Set("Backward") end
+end)
+
+ConfigTabCategoryAntiAim:AddKeybind("Manual Spin", nil, "ConfigTabCategoryAntiAimManualSpin", function(val)
+	if val == true and UserInputService:GetFocusedTextBox() == nil then library.pointers.ConfigTabCategoryAntiAimYaw:Set("Spin") end
 end)
 
 
@@ -2183,6 +2237,6 @@ end
 
 print("Chrome finished loading!")
 
-Hint.Text = "Chrome | Loading finished!"
+Hint.Text = "Chrome | Not Loading finished!"
 wait(1.5)
 Hint:Destroy()
