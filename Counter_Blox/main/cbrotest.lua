@@ -355,7 +355,7 @@ end
 
 local function GetClosestPlayer()
 	local MaximumDistance = math.huge
-	local target = nil
+	local Target = nil
   
   	coroutine.wrap(function()
     		wait(20); MaximumDistance = math.huge -- Reset the MaximumDistance so that the Aimbot doesn't remember it as a very small variable and stop capturing players...
@@ -2236,5 +2236,5 @@ end
 print("Chrome finished loading!")
 
 Hint.Text = "Chrome | Loading finished!"
-wait(1.5)
+wait(3.0)
 Hint:Destroy()
