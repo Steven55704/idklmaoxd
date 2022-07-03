@@ -95,8 +95,7 @@ local ThrowGrenade = Events.ThrowGrenade
 local PlantC4 = Events.PlantC4
 
 -- Dynamic
-local SilentAimSettings = {target = nil}
-local SilentRagebot = {target = nil, cooldown = false}
+local AimbotAim = {target = nil}
 local oldInventory = cbClient.CurrentInventory
 local nocw_s = {}
 local nocw_m = {}
