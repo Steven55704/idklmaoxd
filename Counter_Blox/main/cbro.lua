@@ -454,75 +454,63 @@ local function AddCustomModel(tbl)
 end
 
 -- GUI
-local MainTab = Window:CreateTab("Main")
+local ConfigTab = Window:CreateTab("Aimbot")
 
-local MainTabCategoryAimSettings = MainTab:AddCategory("Aim Settings", 1)
+local ConfigTabCategoryAim = ConfigTab:AddCategory("Aim", 1)
 
-MainTabCategoryAimSettings:AddToggle("Enabled", false, "MainTabCategoryAimSettingsEnabled", function(val)
+ConfigTabCategoryAim:AddToggle("Activate Aim", false, "ConfigTabCategoryAimActivate", function(val)
 	if val == true then
-		AimSettingsLoop = RunService.RenderStepped:Connect(function()
-			if library.base.Window.Visible == false and IsAlive(LocalPlayer) then
-				if library.pointers.MainTabCategoryAimSettingsKeybind.value == nil or (library.pointers.MainTabCategoryAimSettingsKeybind.value.EnumType == Enum.KeyCode and UserInputService:IsKeyDown(library.pointers.MainTabCategoryAimSettingsKeybind.value)) or (library.pointers.MainTabCategoryAimSettingsKeybind.value.EnumType == Enum.UserInputType and UserInputService:IsMouseButtonPressed(library.pointers.MainTabCategoryAimSettingsKeybind.value)) then
-					plr = GetAimSettingsTarget()
-					
-					if plr ~= nil then
-						hitboxpart = GetAimSettingsHitbox(plr)
-						
-						if hitboxpart ~= nil then
-							local Vector, onScreen = CurrentCamera:WorldToScreenPoint(hitboxpart.Position)
-							local PositionX = (Mouse.X-Vector.X)/library.pointers.MainTabCategoryAimSettingsSmoothness.value + 1
-							local PositionY = (Mouse.Y-Vector.Y)/library.pointers.MainTabCategoryAimSettingsSmoothness.value + 1
-							
-							if library.pointers.MainTabCategoryAimSettingsSilent.value == true then
-								SilentAimSettings.target = hitboxpart
-								SilentAimSettings.aiming = true
-							else
-								mousemove(-PositionX, -PositionY)
-								if SilentAimSettings.target ~= nil then SilentAimSettings.target = nil end
-							end
+		AimLoop =  RunService.RenderStepped:Connect(function()
+			if library.pointers.ConfigTabCategoryAimKeybind.value == nil or (library.pointers.ConfigTabCategoryAimKeybind.value.EnumType == Enum.KeyCode and UserInputService:IsKeyDown(library.pointers.ConfigTabCategoryAimKeybind.value)) or (library.pointers.ConfigTabCategoryAimKeybind.value.EnumType == Enum.UserInputType and UserInputService:IsMouseButtonPressed(library.pointers.ConfigTabCategoryAimKeybind.value)) then
+				plr = GetClosestPlayer()
+
+				if plr ~= nil then
+					hitboxpart = GetAimPart(plr)
+
+					if hitboxpart ~= nil then
+						local Vector, onScreen = CurrentCamera:WorldToScreenPoint(hitboxpart.Position)
+						local PositionX = (Mouse.X-Vector.X)/library.pointers.ConfigTabCategoryAimSmoothness.value + 1
+						local PositionY = (Mouse.Y-Vector.Y)/library.pointers.ConfigTabCategoryAimSmoothness.value + 1
+
+						if library.pointers.ConfigTabCategoryAimAimbot.value == true then
+							AimbotAim._G.AimbotEnabled = true
 						else
-							if SilentAimSettings.target ~= nil then SilentAimSettings.target = nil end
+							AimbotAim._G.AimbotEnabled = false
 						end
-					else
-						if SilentAimSettings.target ~= nil then SilentAimSettings.target = nil end
 					end
-				else
-					if SilentAimSettings.target ~= nil then SilentAimSettings.target = nil end
 				end
-			else
-				if SilentAimSettings.target ~= nil then SilentAimSettings.target = nil end
 			end
-		end)
-	elseif val == false and AimSettingsLoop then
-		AimSettingsLoop:Disconnect()
+		end
+	end)
+end)
+
+ConfigTabCategoryAim:AddToggle("Aimbot", false, "ConfigTabCategoryAimAimbot",)
+
+ConfigTabCategoryAim:AddToggle("Team Check", false, "ConfigTabCategoryAimTeamCheck", function(val)
+	if val == true then
+		_G.TeamCheck = true
+	else
+		_G.TeamCheck = false
 	end
 end)
 
-MainTabCategoryAimSettings:AddToggle("Silent", false, "MainTabCategoryAimSettingsSilent")
+ConfigTabCategoryAim:AddKeybind("Keybind", nil, "ConfigTabCategoryAimKeybind")
 
-MainTabCategoryAimSettings:AddToggle("Team Check", false, "MainTabCategoryAimSettingsTeamCheck")
-
-MainTabCategoryAimSettings:AddToggle("Visibility Check", false, "MainTabCategoryAimSettingsVisibilityCheck")
-
-MainTabCategoryAimSettings:AddKeybind("Keybind", nil, "MainTabCategoryAimSettingsKeybind")
-
-MainTabCategoryAimSettings:AddMultiDropdown("Hitbox", {"Head", "Chest", "Arms", "Legs"}, {"Head"}, "MainTabCategoryAimSettingsHitbox")
-
-MainTabCategoryAimSettings:AddDropdown("Hitbox Priority", {"FOV", "Distance"}, "FOV", "MainTabCategoryAimSettingsHitboxPriority")
-
-MainTabCategoryAimSettings:AddDropdown("Target Priority", {"FOV", "Distance"}, "FOV", "MainTabCategoryAimSettingsTargetPriority")
-
-MainTabCategoryAimSettings:AddSlider("Field of View", {0, 360, 0, 1, "°"}, "MainTabCategoryAimSettingsFOV", function(val)
-	FOVCircle.Radius = val
+ConfigTabCategoryAim:AddToggle("Hold Keybind", nil, "ConfigTabCategoryAimHoldKeybind", function(val)
+	if val == true then
+		local Holding = true
+	else
+		local Holding = false
 end)
 
-MainTabCategoryAimSettings:AddSlider("Distance", {0, 2048, 0, 1, " studs"}, "MainTabCategoryAimSettingsDistance")
+ConfigTabCategoryAim:AddSlider("Smoothness", {1, 30, 1, 1, ""}, "ConfigTabCategoryAimSmoothness")
 
-MainTabCategoryAimSettings:AddSlider("Smoothness", {1, 30, 1, 1, ""}, "MainTabCategoryAimSettingsSmoothness")
-
-MainTabCategoryAimSettings:AddSlider("Hitchance", {0, 100, 100, 1, "%"}, "MainTabCategoryAimSettingsHitchance")
-
-local MainTabCategoryAntiAimbot = MainTab:AddCategory("Anti Aimbot", 2)
+ConfigTabCategoryAim:AddToggle("Aim Part", false, "ConfigTabCategoryAimHitbox", function(val)
+	if val == true then
+		_G.AimPart = "Head"
+	else
+		_G.AimPart = "Torso"
+end)
 
 MainTabCategoryAntiAimbot:AddToggle("Enabled", false, "MainTabCategoryAntiAimbotEnabled", function(val)
 	AntiAimbot = val
