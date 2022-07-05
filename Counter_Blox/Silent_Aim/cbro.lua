@@ -1987,6 +1987,10 @@ local UpdatesTab = Window:CreateTab("Updates")
 
 local UpdatesTabCategoryProfile = UpdatesTab:AddCategory("Profile", 1)
 
+UpdatesTabCategoryProfile:AddLabel("Profile will release at v1.1.0.0")
+
+UpdatesTabCategoryProfile:AddLabel("Hello! [ChromeUser].")
+
 UpdatesTabCategoryProfile:AddToggle("Hello!" .._G['ChromeUser'], true, "UpdatesTabCategoryProfileWelcome", function (val)
 	if val == true then
 		plr = ProfileInfo()
