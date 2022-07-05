@@ -1991,7 +1991,7 @@ UpdatesTabCategoryProfile:AddLabel("Profile will release at v1.1.0.0")
 
 UpdatesTabCategoryProfile:AddLabel("Hello! [ChromeUser].")
 
-UpdatesTabCategoryProfile:AddToggle("Hello!" .._G['ChromeUser'], true, "UpdatesTabCategoryProfileWelcome", function (val)
+UpdatesTabCategoryProfile:AddToggle("Hello!" .._G['ChromeUser'], false, "UpdatesTabCategoryProfileWelcome", function (val)
 	if val == true then
 		plr = ProfileInfo()
 	elseif val == false then
